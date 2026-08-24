@@ -1,0 +1,113 @@
+# NetPulse - 全球网络延迟监测平台
+# 警告：以下配置仅用于网络诊断与性能测试
+# 生成时间: 2026-08-24 17:09:25 UTC
+
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+
+proxies:
+  - name: "NetPulse-balmy-summit"
+    type: vless
+    server: 172.236.233.59
+    port: 443
+    uuid: 0b98e2ac-3770-44e5-ac26-99932534a9f8
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: Y2XlijV6NaE_huWY3IW0iRFdqY9wRcWLdlJmJYZwDmc
+      short-id: 2e6a9ae9a452c8b1
+  - name: "NetPulse-modest-tapir"
+    type: vless
+    server: 104.105.138.244
+    port: 443
+    uuid: b2d0b1f8-b9ad-41a7-828f-7f9ac0629d8d
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: CVg05eC-jllFrhOmMBP5HRS9laFi352qFg-mFCydiQY
+      short-id: 4342af695bcc7efd
+  - name: "NetPulse-tranquil-whale"
+    type: vless
+    server: 151.242.11.238
+    port: 443
+    uuid: 2bb2849b-13ee-4277-8e8e-12fa98ea26d2
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: 5FCt11qZUn5VDN-AcgY5_-Y3FfQPHkIiNRQ4t2ANzE0
+      short-id: 217745c7855b39f7
+  - name: "NetPulse-breezy-yak"
+    type: vless
+    server: 172.232.118.174
+    port: 443
+    uuid: 56218b38-ddf6-40b5-8b66-e2e4badc201f
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: -IB2TTE8okZLfP6uj-T5_PSTp-nJepu3aAEyrgSJHEU
+      short-id: 82cd39e402eea8a6
+  - name: "NetPulse-sunny-ibex"
+    type: vless
+    server: 65.108.48.13
+    port: 443
+    uuid: 96e217ed-69d3-421a-8f13-1dc62e53f9ec
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: gcc5BcuszMHez_FwB8AAmqgrHTwC1Sb7lHgoaW2-xXs
+      short-id: c56ea70059a78451
+
+proxy-groups:
+  - name: "🚀 自动选择"
+    type: url-test
+    proxies:
+      - "NetPulse-balmy-summit"
+      - "NetPulse-modest-tapir"
+      - "NetPulse-tranquil-whale"
+      - "NetPulse-breezy-yak"
+      - "NetPulse-sunny-ibex"
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+
+  - name: "🎯 手动切换"
+    type: select
+    proxies:
+      - "NetPulse-balmy-summit"
+      - "NetPulse-modest-tapir"
+      - "NetPulse-tranquil-whale"
+      - "NetPulse-breezy-yak"
+      - "NetPulse-sunny-ibex"
+      - "🚀 自动选择"
+  - name: PROXY
+    type: select
+    proxies:
+      - "🎯 手动切换"
+      - "🚀 自动选择"
+  - name: DIRECT
+    type: select
+    proxies:
+      - DIRECT

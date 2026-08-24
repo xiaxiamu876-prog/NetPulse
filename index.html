@@ -62,6 +62,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  cursor: default;
 }
 .nav-brand svg { flex-shrink: 0; }
 .nav-links { display: flex; gap: 4px; }
@@ -112,6 +113,16 @@ body {
   font-size: 1.05rem;
   max-width: 560px;
   margin: 0 auto 32px;
+}
+.hero .ver-info {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 20px;
+  background: rgba(98,250,211,.1);
+  border: 1px solid rgba(98,250,211,.15);
+  color: var(--success);
+  font-size: .82rem;
+  font-weight: 500;
 }
 
 /* ===== Cards ===== */
@@ -170,16 +181,6 @@ body {
   letter-spacing: -.3px;
 }
 
-/* ===== Charts ===== */
-.charts-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 40px;
-}
-.chart-card { min-height: 280px; }
-.chart-card .card-title { margin-bottom: 16px; }
-
 /* ===== Table ===== */
 .table-wrap {
   overflow-x: auto;
@@ -221,11 +222,10 @@ tr:hover td { background: rgba(255,255,255,.03); }
   font-weight: 600;
   letter-spacing: .2px;
 }
-.badge-strong { background: rgba(124,92,255,.2); color: var(--primary); }
+.badge-vless { background: rgba(124,92,255,.2); color: #A08CFF; }
+.badge-foundation { background: rgba(98,250,211,.12); color: var(--success); }
+.badge-volunteer { background: rgba(105,231,255,.12); color: var(--accent); }
 .badge-extreme { background: rgba(98,250,211,.15); color: var(--success); }
-.badge-normal { background: rgba(155,167,199,.15); color: var(--text-sec); }
-.badge-residential { background: rgba(105,231,255,.12); color: var(--accent); }
-.badge-datacenter { background: rgba(255,183,77,.12); color: var(--warning); }
 
 /* ===== Filters ===== */
 .filters {
@@ -340,8 +340,6 @@ tr:hover td { background: rgba(255,255,255,.03); }
 }
 .btn-secondary:hover { background: var(--glass-hover); }
 .btn-sm { padding: 6px 14px; font-size: .8rem; }
-.btn-danger { background: rgba(255,107,107,.15); color: var(--danger); border: 1px solid rgba(255,107,107,.2); }
-.btn-danger:hover { background: rgba(255,107,107,.25); }
 
 /* ===== Output ===== */
 .output-box {
@@ -425,14 +423,27 @@ tr:hover td { background: rgba(255,255,255,.03); }
   margin-right: 6px;
 }
 .status-dot.online { background: var(--success); box-shadow: 0 0 8px rgba(98,250,211,.4); }
-.status-dot.slow { background: var(--warning); box-shadow: 0 0 8px rgba(255,183,77,.4); }
-.status-dot.offline { background: var(--danger); box-shadow: 0 0 8px rgba(255,107,107,.4); }
+.status-dot.offline { background: var(--text-dim); box-shadow: 0 0 8px rgba(90,106,138,.3); }
+
+/* ===== Map ===== */
+.map-container {
+  width: 100%;
+  height: 300px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  background: rgba(0,0,0,.2);
+  border: 1px solid var(--border);
+}
+.map-canvas {
+  width: 100%;
+  height: 100%;
+}
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
   .hero h1 { font-size: 1.8rem; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .charts-row { grid-template-columns: 1fr; }
   .nav { padding: 0 16px; }
   .nav-links a { padding: 8px 10px; font-size: .82rem; }
   .section { padding: 0 16px 40px; }
@@ -449,7 +460,6 @@ tr:hover td { background: rgba(255,255,255,.03); }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
-/* ===== Print ===== */
 @media print {
   .nav, .pro-toggle, .filter-btn, .search-input, .btn, .node-checkbox { display: none !important; }
   body { background: #fff; color: #000; }
@@ -472,7 +482,7 @@ tr:hover td { background: rgba(255,255,255,.03); }
   </div>
   <div class="nav-links">
     <a class="active" onclick="switchView('dashboard')">仪表盘</a>
-    <a onclick="switchView('nodes')">节点列表</a>
+    <a onclick="switchView('nodes')">中继列表</a>
     <a onclick="switchView('sub')" id="subNavLink" style="opacity:0.4;pointer-events:none">高级导出</a>
   </div>
 </nav>
@@ -480,7 +490,8 @@ tr:hover td { background: rgba(255,255,255,.03); }
 <!-- Hero -->
 <main><section class="hero">
   <h1>全球网络延迟监测</h1>
-  <p>实时追踪全球 800+ 检测节点的网络性能、延迟分布与协议覆盖，为网络诊断提供数据支撑。</p>
+  <p>实时追踪全球中继节点的网络性能、延迟分布与协议覆盖，为网络诊断提供数据支撑。</p>
+  <div class="ver-info" id="versionInfo">VLESS + REALITY + Vision · 数据采集中...</div>
 </section>
 
 <!-- ===== Dashboard View ===== -->
@@ -488,34 +499,30 @@ tr:hover td { background: rgba(255,255,255,.03); }
 
   <!-- Stats -->
   <div class="stats-grid" id="statsGrid">
-    <div class="card"><div class="card-title">检测节点</div><div class="card-value" id="statTotal">-</div></div>
-    <div class="card"><div class="card-title">住宅节点</div><div class="card-value" id="statResidential">-</div></div>
-    <div class="card"><div class="card-title">协议种类</div><div class="card-value" id="statProtocols">-</div></div>
+    <div class="card"><div class="card-title">监测中继</div><div class="card-value" id="statTotal">-</div></div>
+    <div class="card"><div class="card-title">Foundation 节点</div><div class="card-value" style="color:var(--success)" id="statFoundation">-</div></div>
+    <div class="card"><div class="card-title">志愿者节点</div><div class="card-value" style="color:var(--accent)" id="statVolunteer">-</div></div>
     <div class="card"><div class="card-title">覆盖区域</div><div class="card-value" id="statCountries">-</div></div>
-    <div class="card"><div class="card-title">抗干扰 极强</div><div class="card-value" style="color:var(--success)" id="statExtreme">-</div></div>
-    <div class="card"><div class="card-title">抗干扰 强</div><div class="card-value" style="color:var(--primary)" id="statStrong">-</div></div>
+    <div class="card"><div class="card-title">传输协议</div><div class="card-value" style="font-size:1.2rem" id="statProtocol">-</div></div>
+    <div class="card"><div class="card-title">安全等级</div><div class="card-value" style="color:var(--success)" id="statSecurity">极强</div></div>
   </div>
 
-  <!-- Charts -->
+  <!-- Global Map -->
   <div class="section">
-    <div class="charts-row">
-      <div class="card chart-card">
-        <div class="card-title">协议分布</div>
-        <div id="protocolChart" style="height:220px;display:flex;align-items:flex-end;gap:8px;padding-bottom:24px;position:relative;"></div>
-      </div>
-      <div class="card chart-card">
-        <div class="card-title">抗干扰等级</div>
-        <div id="antiChart" style="height:220px;display:flex;align-items:flex-end;gap:8px;padding-bottom:24px;position:relative;"></div>
-      </div>
+    <div class="section-header"><h2>中继分布</h2></div>
+    <div class="map-container">
+      <canvas id="globeMap" class="map-canvas"></canvas>
     </div>
+  </div>
 
-    <!-- Recent nodes preview -->
-    <div class="section-header"><h2>最近检测节点</h2></div>
+  <!-- Nodes table -->
+  <div class="section">
+    <div class="section-header"><h2>在线中继</h2></div>
     <div class="table-wrap">
       <table>
-        <caption style="caption-side:bottom;font-size:.75rem;color:var(--text-dim);padding-top:6px;text-align:left">最近检测节点列表</caption>
+        <caption style="caption-side:bottom;font-size:.75rem;color:var(--text-dim);padding-top:6px;text-align:left">当前在线中继节点列表，数据来自 OpenRung 志愿者网络</caption>
         <thead><tr>
-          <th>IP 地址</th><th>协议</th><th>类型</th><th>延迟</th><th>抗干扰</th><th>安全评分</th>
+          <th>节点名称</th><th>位置</th><th>类型</th><th>传输</th><th>协议</th><th>安全等级</th>
         </tr></thead>
         <tbody id="recentTable"></tbody>
       </table>
@@ -527,34 +534,27 @@ tr:hover td { background: rgba(255,255,255,.03); }
 <div id="view-nodes" style="display:none">
   <div class="section" style="padding-top:20px">
     <div class="section-header">
-      <h2>节点列表</h2>
+      <h2>中继列表</h2>
       <div class="sel-count">已选 <span id="selCount">0</span> 个节点</div>
     </div>
     <div class="filters">
       <button class="filter-btn active" onclick="setFilter('all',this)">全部</button>
-      <button class="filter-btn" onclick="setFilter('residential',this)">住宅 IP</button>
-      <button class="filter-btn" onclick="setFilter('vmess',this)">VMess</button>
-      <button class="filter-btn" onclick="setFilter('vless',this)">VLESS</button>
-      <button class="filter-btn" onclick="setFilter('trojan',this)">Trojan</button>
-      <button class="filter-btn" onclick="setFilter('shadowsocks',this)">SS</button>
-      <button class="filter-btn" onclick="setFilter('http',this)">HTTP</button>
-      <button class="filter-btn" onclick="setFilter('socks5',this)">SOCKS5</button>
-      <button class="filter-btn" onclick="setFilter('socks4',this)">SOCKS4</button>
-      <button class="filter-btn" onclick="setFilter('openvpn',this)">OpenVPN</button>
-      <input class="search-input" placeholder="搜索 IP 或地区..." oninput="filterNodes()" id="searchInput">
+      <button class="filter-btn" onclick="setFilter('foundation',this)">Foundation</button>
+      <button class="filter-btn" onclick="setFilter('volunteer',this)">志愿者</button>
+      <input class="search-input" placeholder="搜索节点名或地区..." oninput="filterNodes()" id="searchInput">
     </div>
     <div class="table-wrap">
       <table>
-        <caption style="caption-side:bottom;font-size:.75rem;color:var(--text-dim);padding-top:6px;text-align:left">全部检测节点列表</caption>
+        <caption style="caption-side:bottom;font-size:.75rem;color:var(--text-dim);padding-top:6px;text-align:left">全部中继节点列表</caption>
         <thead><tr>
           <th class="checkbox-cell"><input type="checkbox" onchange="toggleAll(this)" class="node-checkbox"></th>
-          <th>IP 地址</th><th>协议</th><th>类型</th><th>延迟</th><th>抗干扰</th><th>安全分</th>
+          <th>节点名称</th><th>位置</th><th>类型</th><th>传输</th><th>安全等级</th>
         </tr></thead>
         <tbody id="nodeTable"></tbody>
       </table>
     </div>
     <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="exportSelected()">🚀 导出选中配置</button>
+      <button class="btn btn-primary" onclick="exportSelected()">📡 导出选中配置</button>
       <button class="btn btn-secondary" onclick="selectAll()">全选</button>
       <button class="btn btn-secondary" onclick="clearSelection()">清空</button>
     </div>
@@ -566,8 +566,8 @@ tr:hover td { background: rgba(255,255,255,.03); }
   <div class="section-header"><h2>高级导出中心</h2></div>
 
   <div class="sub-card">
-    <h3><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8" stroke="#7C5CFF" stroke-width="1.5"/><path d="M10 6v8M6 10h8" stroke="#7C5CFF" stroke-width="1.5" stroke-linecap="round"/></svg> Clash / Mihomo 订阅</h3>
-    <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:12px">生成 YAML 格式订阅配置，适用于 Clash Meta / Mihomo / CFW 等客户端。</p>
+    <h3><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8" stroke="#7C5CFF" stroke-width="1.5"/><path d="M10 6v8M6 10h8" stroke="#7C5CFF" stroke-width="1.5" stroke-linecap="round"/></svg> Clash Meta / Mihomo 订阅</h3>
+    <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:12px">VLESS + REALITY + Vision 配置，适用于 Clash Meta / Mihomo / FlClash 等客户端。</p>
     <div class="sub-actions">
       <button class="btn btn-sm btn-primary" onclick="genClash()">生成 Clash YAML</button>
       <button class="btn btn-sm btn-secondary" onclick="copyOutput('clashOut')">复制</button>
@@ -577,7 +577,7 @@ tr:hover td { background: rgba(255,255,255,.03); }
 
   <div class="sub-card">
     <h3><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="5" width="14" height="12" rx="2" stroke="#69E7FF" stroke-width="1.5" fill="none"/><path d="M7 5V3h6v2" stroke="#69E7FF" stroke-width="1.5"/></svg> v2rayNG / 通用 Base64 订阅</h3>
-    <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:12px">Base64 编码的通用订阅链接，适用于 v2rayNG、Shadowrocket、Quantumult 等。</p>
+    <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:12px">Base64 编码的通用订阅链接，适用于 v2rayNG、Shadowrocket、Loon 等客户端。</p>
     <div class="sub-actions">
       <button class="btn btn-sm btn-primary" onclick="genBase64()">生成 Base64 订阅</button>
       <button class="btn btn-sm btn-secondary" onclick="copyOutput('b64Out')">复制</button>
@@ -586,11 +586,12 @@ tr:hover td { background: rgba(255,255,255,.03); }
   </div>
 
   <div class="sub-card">
-    <h3><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2a8 8 0 100 16 8 8 0 000-16z" stroke="#62FAD3" stroke-width="1.5" fill="none"/><path d="M10 6v4l3 3" stroke="#62FAD3" stroke-width="1.5" stroke-linecap="round"/></svg> 住宅 IP 节点 (VPN Gate)</h3>
-    <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:12px">OpenVPN 配置文件下载，来自 VPN Gate 学术志愿者网络，节点为真实住宅 IP 地址。</p>
-    <div class="sub-actions" id="residentialActions">
-      <span style="color:var(--text-dim);font-size:.85rem">数据采集中，请稍后再试...</span>
+    <h3><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2a8 8 0 100 16 8 8 0 000-16z" stroke="#62FAD3" stroke-width="1.5" fill="none"/><path d="M10 6v4l3 3" stroke="#62FAD3" stroke-width="1.5" stroke-linecap="round"/></svg> 实时中继状态</h3>
+    <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:12px">数据来自 OpenRung 公开 Broker API，节点由 Foundation 和社区志愿者共同维护。</p>
+    <div class="sub-actions">
+      <button class="btn btn-sm btn-secondary" onclick="refreshRelays()">🔄 刷新数据</button>
     </div>
+    <div class="output-box" id="relayStatus" style="max-height:200px;font-size:.82rem">点击刷新获取最新中继状态</div>
   </div>
 </div>
 
@@ -603,7 +604,7 @@ tr:hover td { background: rgba(255,255,255,.03); }
 <!-- Footer -->
 </main>
 <footer class="footer">
-  <p>NetPulse — 全球网络延迟监测平台 · 数据来源：<a href="https://www.vpngate.net/" target="_blank" rel="noopener noreferrer">VPN Gate</a> · <a href="https://github.com/gfpcom/free-proxy-list" target="_blank" rel="noopener noreferrer">GitHub 开源社区</a></p>
+  <p>NetPulse — 全球网络延迟监测平台 · 数据来源：<a href="https://github.com/openrung/openrung" target="_blank" rel="noopener noreferrer">OpenRung 志愿者中继网络</a></p>
   <p style="margin-top:4px">本站仅提供网络性能数据，请遵守当地法律法规</p>
 </footer>
 
@@ -626,21 +627,15 @@ async function init() {
     stats = await statsRes.json();
     renderDashboard();
     renderNodes();
+    document.getElementById('versionInfo').textContent =
+      `VLESS + REALITY + Vision · ${stats.total || 0} 个中继 · ${stats.updated_at ? new Date(stats.updated_at).toLocaleString() : ''}`;
   } catch(e) {
-    console.warn('数据加载失败，使用演示数据', e);
-    loadDemoData();
+    console.warn('数据加载失败', e);
+    stats = { total: 0, by_class: {}, by_country: {}, protocol: 'VLESS + REALITY + Vision' };
+    allNodes = [];
+    renderDashboard();
+    renderNodes();
   }
-}
-
-function loadDemoData() {
-  stats = {
-    total: 0, residential: 0, datacenter: 0,
-    by_protocol: {}, by_anti_censorship: {}, by_country: {},
-    updated_at: new Date().toISOString()
-  };
-  allNodes = [];
-  renderDashboard();
-  renderNodes();
 }
 
 // ===== 视图切换 =====
@@ -649,86 +644,112 @@ function switchView(view) {
   document.getElementById('view-dashboard').style.display = view === 'dashboard' ? '' : 'none';
   document.getElementById('view-nodes').style.display = view === 'nodes' ? '' : 'none';
   document.getElementById('view-sub').classList.toggle('active', view === 'sub');
-  
+
   const links = document.querySelectorAll('.nav-links a');
   const idx = view === 'dashboard' ? 0 : view === 'nodes' ? 1 : 2;
   if (links[idx]) links[idx].classList.add('active');
-  
+
   if (view === 'sub') renderSubNodes();
 }
 
 // ===== 仪表盘 =====
 function renderDashboard() {
   const s = stats;
-  document.getElementById('statTotal').textContent = s.total || 0;
-  document.getElementById('statResidential').textContent = s.residential || 0;
-  document.getElementById('statProtocols').textContent = Object.keys(s.by_protocol || {}).length || 0;
-  document.getElementById('statCountries').textContent = Object.keys(s.by_country || {}).length || 0;
-  document.getElementById('statExtreme').textContent = (s.by_anti_censorship || {}).极强 || 0;
-  document.getElementById('statStrong').textContent = (s.by_anti_censorship || {}).强 || 0;
+  const byClass = s.by_class || {};
+  const byCountry = s.by_country || {};
 
-  renderProtocolChart();
-  renderAntiChart();
+  document.getElementById('statTotal').textContent = s.total || 0;
+  document.getElementById('statFoundation').textContent = byClass.foundation || 0;
+  document.getElementById('statVolunteer').textContent = byClass.volunteer || 0;
+  document.getElementById('statCountries').textContent = Object.keys(byCountry).length || 0;
+  document.getElementById('statProtocol').textContent = s.protocol || 'VLESS + REALITY';
+  document.getElementById('statSecurity').textContent = '极强';
+
+  renderWorldMap();
   renderRecentNodes();
 }
 
-function renderProtocolChart() {
-  const el = document.getElementById('protocolChart');
-  const protos = stats.by_protocol || {};
-  const entries = Object.entries(protos).sort((a,b) => b[1]-a[1]);
-  if (!entries.length) { el.innerHTML = '<span style="color:var(--text-dim);font-size:.85rem">暂无数据</span>'; return; }
-  
-  const maxVal = Math.max(...entries.map(e => e[1]));
-  const colors = {vmess:'#7C5CFF',vless:'#69E7FF',trojan:'#62FAD3',shadowsocks:'#FFB74D',http:'#FF6B6B',socks5:'#9AA7C7',socks4:'#5A6A8A',openvpn:'#FF8A65'};
-  
-  el.innerHTML = entries.map(([k,v]) => {
-    const pct = (v/maxVal*100).toFixed(0);
-    const color = colors[k] || '#7C5CFF';
-    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
-      <div style="font-size:.7rem;color:var(--text-sec);margin-bottom:4px">${v}</div>
-      <div style="width:100%;max-width:48px;height:${pct}%;background:${color};border-radius:4px 4px 0 0;opacity:.85;transition:height .6s"></div>
-      <div style="font-size:.72rem;color:var(--text-dim);margin-top:6px">${k}</div>
-    </div>`;
-  }).join('');
-}
+function renderWorldMap() {
+  const canvas = document.getElementById('globeMap');
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width;
+  canvas.height = rect.height;
 
-function renderAntiChart() {
-  const el = document.getElementById('antiChart');
-  const ac = stats.by_anti_censorship || {};
-  const entries = Object.entries(ac).sort((a,b) => b[1]-a[1]);
-  if (!entries.length) { el.innerHTML = '<span style="color:var(--text-dim);font-size:.85rem">暂无数据</span>'; return; }
-  
-  const maxVal = Math.max(...entries.map(e => e[1]));
-  const colors = {极强:'#62FAD3',强:'#7C5CFF',普通:'#5A6A8A'};
-  
-  el.innerHTML = entries.map(([k,v]) => {
-    const pct = (v/maxVal*100).toFixed(0);
-    const color = colors[k] || '#7C5CFF';
-    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
-      <div style="font-size:.7rem;color:var(--text-sec);margin-bottom:4px">${v}</div>
-      <div style="width:100%;max-width:48px;height:${pct}%;background:${color};border-radius:4px 4px 0 0;opacity:.85;transition:height .6s"></div>
-      <div style="font-size:.72rem;color:var(--text-dim);margin-top:6px">${k}</div>
-    </div>`;
-  }).join('');
+  const w = canvas.width;
+  const h = canvas.height;
+
+  // Background
+  ctx.fillStyle = 'rgba(7,10,20,.8)';
+  ctx.fillRect(0, 0, w, h);
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(255,255,255,.05)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 6; i++) {
+    ctx.beginPath();
+    ctx.moveTo(0, h * i / 6);
+    ctx.lineTo(w, h * i / 6);
+    ctx.stroke();
+  }
+  for (let i = 0; i <= 12; i++) {
+    ctx.beginPath();
+    ctx.moveTo(w * i / 12, 0);
+    ctx.lineTo(w * i / 12, h);
+    ctx.stroke();
+  }
+
+  // Draw nodes
+  allNodes.forEach(n => {
+    if (!n.lat || !n.lng) return;
+    const x = (n.lng + 180) / 360 * w;
+    const y = (90 - n.lat) / 180 * h;
+
+    const isFoundation = n.cls === 'foundation';
+
+    // Glow
+    const gradient = ctx.createRadialGradient(x, y, 0, x, y, 20);
+    gradient.addColorStop(0, isFoundation ? 'rgba(98,250,211,.4)' : 'rgba(105,231,255,.4)');
+    gradient.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Dot
+    ctx.fillStyle = isFoundation ? '#62FAD3' : '#69E7FF';
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Label
+    ctx.fillStyle = 'rgba(247,250,255,.8)';
+    ctx.font = '10px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(n.label || n.name || '', x, y - 10);
+  });
 }
 
 function renderRecentNodes() {
   const el = document.getElementById('recentTable');
-  const recent = allNodes.slice(0, 15);
-  if (!recent.length) { el.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:32px">暂无数据</td></tr>'; return; }
-  
-  el.innerHTML = recent.map(n => {
-    const ip = n.ip || '-';
-    const ping = n.g || 999;
-    const statusClass = ping < 200 ? 'online' : ping < 500 ? 'slow' : 'offline';
-    const acBadge = n.ac === '极强' ? 'badge-extreme' : n.ac === '强' ? 'badge-strong' : 'badge-normal';
+  if (!allNodes.length) {
+    el.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:32px">暂无数据</td></tr>';
+    return;
+  }
+
+  el.innerHTML = allNodes.map(n => {
+    const cls = n.cls || 'volunteer';
+    const clsBadge = cls === 'foundation' ? 'badge-foundation' : 'badge-volunteer';
+    const clsName = cls === 'foundation' ? 'Foundation' : '志愿者';
+    const transport = n.transport || 'direct';
+    const loc = [n.city, n.cc].filter(Boolean).join(', ') || '未知';
     return `<tr>
-      <td style="font-family:var(--mono);font-size:.8rem">${ip.length > 20 ? ip.slice(0,20)+'...' : ip}</td>
-      <td><span class="badge badge-strong">${n.p || '-'}</span></td>
-      <td><span class="badge ${n.rs ? 'badge-residential' : 'badge-datacenter'}">${n.rs ? '住宅' : '数据中心'}</span></td>
-      <td><span class="status-dot ${statusClass}"></span>${ping}ms</td>
-      <td><span class="badge ${acBadge}">${n.ac}</span></td>
-      <td><span style="color:${n.s > 70 ? 'var(--success)' : n.s > 40 ? 'var(--warning)' : 'var(--danger)'}">${n.s}/100</span></td>
+      <td><span style="font-weight:600">${n.label || n.name || '-'}</span></td>
+      <td>${loc}</td>
+      <td><span class="badge ${clsBadge}">${clsName}</span></td>
+      <td><span style="color:var(--text-sec);font-size:.8rem">${transport === 'direct' ? '直连' : '隧道'}</span></td>
+      <td><span class="badge badge-vless">VLESS+REALITY</span></td>
+      <td><span class="badge badge-extreme">极强</span></td>
     </tr>`;
   }).join('');
 }
@@ -737,42 +758,43 @@ function renderRecentNodes() {
 function renderNodes() {
   const el = document.getElementById('nodeTable');
   const search = (document.getElementById('searchInput').value || '').toLowerCase();
-  
+
   let filtered = allNodes;
   if (currentFilter !== 'all') {
-    if (currentFilter === 'residential') {
-      filtered = filtered.filter(n => n.rs);
-    } else {
-      filtered = filtered.filter(n => n.p === currentFilter);
-    }
+    filtered = filtered.filter(n => n.cls === currentFilter);
   }
   if (search) {
-    filtered = filtered.filter(n => (n.ip || '').toLowerCase().includes(search) || (n.c || '').toLowerCase().includes(search));
+    filtered = filtered.filter(n =>
+      (n.label || '').toLowerCase().includes(search) ||
+      (n.name || '').toLowerCase().includes(search) ||
+      (n.city || '').toLowerCase().includes(search) ||
+      (n.cc || '').toLowerCase().includes(search)
+    );
   }
-  
+
   if (!filtered.length) {
-    el.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-dim);padding:32px">没有匹配的节点</td></tr>';
+    el.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:32px">没有匹配的节点</td></tr>';
     document.getElementById('selCount').textContent = selectedIds.size;
     return;
   }
-  
+
   el.innerHTML = filtered.map(n => {
-    const ip = n.ip || '-';
-    const ping = n.g || 999;
-    const statusClass = ping < 200 ? 'online' : ping < 500 ? 'slow' : 'offline';
-    const acBadge = n.ac === '极强' ? 'badge-extreme' : n.ac === '强' ? 'badge-strong' : 'badge-normal';
+    const cls = n.cls || 'volunteer';
+    const clsBadge = cls === 'foundation' ? 'badge-foundation' : 'badge-volunteer';
+    const clsName = cls === 'foundation' ? 'Foundation' : '志愿者';
+    const transport = n.transport || 'direct';
+    const loc = [n.city, n.cc].filter(Boolean).join(', ') || '未知';
     const checked = selectedIds.has(n.id) ? 'checked' : '';
     return `<tr>
       <td class="checkbox-cell"><input type="checkbox" class="node-checkbox" ${checked} onchange="toggleNode('${n.id}')"></td>
-      <td style="font-family:var(--mono);font-size:.8rem">${ip.length > 25 ? ip.slice(0,25)+'...' : ip}</td>
-      <td><span class="badge badge-strong">${n.p || '-'}</span></td>
-      <td><span class="badge ${n.rs ? 'badge-residential' : 'badge-datacenter'}">${n.rs ? '住宅' : '数据中心'}</span></td>
-      <td><span class="status-dot ${statusClass}"></span>${ping}ms</td>
-      <td><span class="badge ${acBadge}">${n.ac}</span></td>
-      <td><span style="color:${n.s > 70 ? 'var(--success)' : n.s > 40 ? 'var(--warning)' : 'var(--danger)'}">${n.s}</span></td>
+      <td><span style="font-weight:600">${n.label || n.name || '-'}</span></td>
+      <td>${loc}</td>
+      <td><span class="badge ${clsBadge}">${clsName}</span></td>
+      <td><span style="color:var(--text-sec);font-size:.8rem">${transport === 'direct' ? '直连' : '隧道'}</span></td>
+      <td><span class="badge badge-extreme">极强</span></td>
     </tr>`;
   }).join('');
-  
+
   document.getElementById('selCount').textContent = selectedIds.size;
 }
 
@@ -798,11 +820,15 @@ function toggleAll(cb) {
   const search = (document.getElementById('searchInput').value || '').toLowerCase();
   let filtered = allNodes;
   if (currentFilter !== 'all') {
-    if (currentFilter === 'residential') filtered = filtered.filter(n => n.rs);
-    else filtered = filtered.filter(n => n.p === currentFilter);
+    filtered = filtered.filter(n => n.cls === currentFilter);
   }
-  if (search) filtered = filtered.filter(n => (n.ip||'').toLowerCase().includes(search) || (n.c||'').toLowerCase().includes(search));
-  
+  if (search) {
+    filtered = filtered.filter(n =>
+      (n.label || '').toLowerCase().includes(search) ||
+      (n.city || '').toLowerCase().includes(search)
+    );
+  }
+
   filtered.forEach(n => {
     if (cb.checked) selectedIds.add(n.id);
     else selectedIds.delete(n.id);
@@ -835,45 +861,80 @@ function exportSelected() {
 }
 
 function renderSubNodes() {
-  const sel = getSelectedNodes();
-  const el = document.getElementById('residentialActions');
-  const residential = allNodes.filter(n => n.rs);
-  if (residential.length) {
-    el.innerHTML = `<span style="color:var(--text-sec);font-size:.85rem">${residential.length} 个住宅 IP 节点可用</span>
-      <button class="btn btn-sm btn-secondary" onclick="genResidentialOVPN()">生成 OpenVPN 配置</button>`;
-  }
+  // nothing special needed
 }
 
 function genClash() {
   const sel = getSelectedNodes();
   const out = document.getElementById('clashOut');
-  if (!sel.length) { out.textContent = '请先在节点列表中选择节点'; return; }
-  
-  let yaml = `# NetPulse 订阅配置\n# 生成时间: ${new Date().toLocaleString()}\n# 节点数: ${sel.length}\n\nport: 7890\nsocks-port: 7891\nmixed-port: 7892\nallow-lan: true\nmode: Rule\nlog-level: info\n\ndns:\n  enabled: true\n  listen: 0.0.0.0:53\n  default-nameserver:\n    - 223.5.5.5\n    - 114.114.114.114\n  nameserver:\n    - https://dns.alidns.com/dns-query\n\nproxies:\n`;
-  
-  sel.forEach((n, i) => {
-    const name = `${n.p}-${n.c || 'unknown'}-${i+1}`;
-    const ip = n.ip || '0.0.0.0';
-    const port = n.port || 443;
-    const proto = n.p || 'http';
-    
-    if (proto === 'vmess') {
-      yaml += `  - name: "${name}"\n    type: vmess\n    server: ${ip}\n    port: ${port}\n    uuid: auto\n    alterId: 0\n    cipher: auto\n    tls: true\n    skip-cert-verify: true\n    udp: true\n\n`;
-    } else if (proto === 'vless') {
-      yaml += `  - name: "${name}"\n    type: vless\n    server: ${ip}\n    port: ${port}\n    uuid: auto\n    flow: xtls-rprx-vision\n    tls: true\n    servername: \n    reality: false\n    udp: true\n\n`;
-    } else if (proto === 'trojan') {
-      yaml += `  - name: "${name}"\n    type: trojan\n    server: ${ip}\n    port: ${port}\n    password: auto\n    udp: true\n    sni: \n    skip-cert-verify: true\n\n`;
-    } else if (proto === 'shadowsocks' || proto === 'ss') {
-      yaml += `  - name: "${name}"\n    type: ss\n    server: ${ip}\n    port: ${port}\n    cipher: aes-256-gcm\n    password: auto\n    udp: true\n\n`;
-    } else if (proto === 'socks5' || proto === 'socks4') {
-      yaml += `  - name: "${name}"\n    type: socks5\n    server: ${ip}\n    port: ${port}\n    udp: true\n\n`;
-    } else {
-      yaml += `  - name: "${name}"\n    type: http\n    server: ${ip}\n    port: ${port}\n    tls: false\n\n`;
-    }
+  if (!sel.length) { out.textContent = '请先在中继列表中选择节点'; return; }
+
+  let yaml = `# NetPulse - Clash Meta 订阅配置
+# 协议: VLESS + REALITY + Vision
+# 生成时间: ${new Date().toLocaleString()}
+# 节点数: ${sel.length}
+# 数据来源: OpenRung 志愿者中继网络
+
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+
+proxies:
+`;
+
+  sel.forEach(n => {
+    const name = `NetPulse-${n.label || n.id.slice(-8)}`;
+    yaml += `  - name: "${name}"
+    type: vless
+    server: ${n.server}
+    port: ${n.port}
+    uuid: ${n.uuid}
+    network: tcp
+    tls: true
+    udp: true
+    flow: ${n.flow || 'xtls-rprx-vision'}
+    servername: ${n.sni || 'www.cloudflare.com'}
+    reality: true
+    reality-opts:
+      public-key: ${n.pbk}
+      short-id: ${n.sid || ''}
+
+`;
   });
-  
-  yaml += `proxy-groups:\n  - name: "Proxy"\n    type: select\n    proxies:\n${sel.map((_,i) => `      - "${sel[i].p || 'http'}-${sel[i].c || 'unknown'}-${i+1}"`).join('\n')}\n\nrules:\n  - MATCH,Proxy\n`;
-  
+
+  yaml += `proxy-groups:
+  - name: "🚀 自动选择"
+    type: url-test
+    proxies:
+`;
+  sel.forEach(n => {
+    yaml += `      - "NetPulse-${n.label || n.id.slice(-8)}"\n`;
+  });
+  yaml += `    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+
+  - name: "🎯 手动切换"
+    type: select
+    proxies:
+`;
+  sel.forEach(n => {
+    yaml += `      - "NetPulse-${n.label || n.id.slice(-8)}"\n`;
+  });
+  yaml += `      - "🚀 自动选择"
+
+  - name: "PROXY"
+    type: select
+    proxies:
+      - "🎯 手动切换"
+      - "🚀 自动选择"
+
+rules:
+  - MATCH,PROXY
+`;
+
   out.textContent = yaml;
   showCopyHint(out);
 }
@@ -881,41 +942,29 @@ function genClash() {
 function genBase64() {
   const sel = getSelectedNodes();
   const out = document.getElementById('b64Out');
-  if (!sel.length) { out.textContent = '请先在节点列表中选择节点'; return; }
-  
+  if (!sel.length) { out.textContent = '请先在中继列表中选择节点'; return; }
+
   const links = [];
-  sel.forEach((n, i) => {
-    const ip = n.ip || '0.0.0.0';
-    const port = n.port || 443;
-    const proto = n.p || 'http';
-    const name = `${proto}-${n.c || 'unknown'}-${i+1}`;
-    
-    if (proto === 'vmess' && n.cl) {
-      links.push(n.cl);
-    } else if (proto === 'trojan' && n.cl) {
-      links.push(n.cl);
-    } else if (proto === 'vless' && n.cl) {
-      links.push(n.cl);
-    } else if (proto === 'shadowsocks' || proto === 'ss') {
-      if (n.cl) links.push(n.cl);
-      else links.push(`ss://YWVzLTI1Ni1nY206cGFzc3dvcmQ@${ip}:${port}#${encodeURIComponent(name)}`);
-    } else if (proto === 'socks5') {
-      links.push(`socks5://${ip}:${port}#${encodeURIComponent(name)}`);
-    } else {
-      links.push(`http://${ip}:${port}#${encodeURIComponent(name)}`);
-    }
+  sel.forEach(n => {
+    const name = encodeURIComponent(`NetPulse-${n.label || n.id.slice(-8)}`);
+    const params = [
+      'encryption=none',
+      'security=reality',
+      `flow=${n.flow || 'xtls-rprx-vision'}`,
+      `sni=${n.sni || 'www.cloudflare.com'}`,
+      'fp=chrome',
+      `pbk=${n.pbk}`,
+      `sid=${n.sid || ''}`,
+      'type=tcp',
+      'headerType=none'
+    ].join('&');
+    const link = `vless://${n.uuid}@${n.server}:${n.port}?${params}#${name}`;
+    links.push(link);
   });
-  
+
   const b64 = btoa(links.join('\n'));
   out.textContent = b64;
   showCopyHint(out);
-}
-
-function genResidentialOVPN() {
-  const residential = allNodes.filter(n => n.rs);
-  const out = document.getElementById('clashOut');
-  if (!residential.length) { out.textContent = '暂无住宅 IP 节点数据'; return; }
-  out.textContent = `已选择 ${residential.length} 个住宅 IP 节点\nOpenVPN 配置文件将在数据采集后提供\n\n请等待 GitHub Actions 下一次采集完成`;
 }
 
 function copyOutput(id) {
@@ -945,12 +994,39 @@ function showCopyHint(el) {
   setTimeout(() => hint.classList.remove('show'), 3000);
 }
 
+// ===== 实时刷新 =====
+async function refreshRelays() {
+  const el = document.getElementById('relayStatus');
+  el.textContent = '正在获取最新中继数据...';
+
+  try {
+    const resp = await fetch('https://broker.openrung.org/api/v1/relays');
+    const data = await resp.json();
+    const relays = data.relays || [];
+    let text = `🔴 实时 Broker 数据 (${data.server_time})\n`;
+    text += `├─ 在线中继: ${data.count}\n`;
+    text += `└─ 签名密钥: ${data.key_id}\n\n`;
+
+    relays.forEach(r => {
+      const cls = r.node_class === 'foundation' ? '🏢 Foundation' : '🙋 志愿者';
+      const loc = [r.city, r.country_code].filter(Boolean).join(', ');
+      const wss = r.wss_fronts ? ' (有WSS回退)' : '';
+      text += `  ${cls} | ${r.label} | ${loc}${wss}\n`;
+      text += `         ${r.public_host}:${r.public_port} | ${r.protocol}\n`;
+    });
+
+    el.textContent = text;
+  } catch(e) {
+    el.textContent = `获取失败: ${e.message}\n\n此功能需要浏览器能直连 broker.openrung.org\n如无法访问，请使用已采集的静态数据`;
+  }
+}
+
 // ===== 专业模式 =====
 function toggleProMode() {
   proMode = !proMode;
   const btn = document.getElementById('proToggle');
   const subLink = document.getElementById('subNavLink');
-  
+
   if (proMode) {
     btn.classList.add('active');
     btn.innerHTML = '<span class="tooltip">退出专业模式</span>🔓';
@@ -967,7 +1043,7 @@ function toggleProMode() {
   }
 }
 
-// 点击 5 次解锁（备用入口）
+// 双击 3 次解锁（备用入口）
 let clickCount = 0;
 document.querySelector('.nav-brand').addEventListener('dblclick', () => {
   clickCount++;
@@ -975,6 +1051,17 @@ document.querySelector('.nav-brand').addEventListener('dblclick', () => {
     clickCount = 0;
     if (!proMode) toggleProMode();
   }
+});
+
+// ===== 窗口变化重新绘制地图 =====
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (document.getElementById('view-dashboard').style.display !== 'none') {
+      renderWorldMap();
+    }
+  }, 200);
 });
 
 // ===== 启动 =====
