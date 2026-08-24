@@ -1,8 +1,9 @@
 {
- "total": 779,
- "residential": 0,
+ "total": 878,
+ "residential": 99,
  "datacenter": 779,
  "by_protocol": {
+  "openvpn": 99,
   "vmess": 200,
   "trojan": 149,
   "shadowsocks": 1,
@@ -12,13 +13,21 @@
   "socks5": 53
  },
  "by_anti_censorship": {
-  "强": 350,
+  "强": 449,
   "极强": 129,
   "普通": 300
  },
  "by_country": {
+  "JP": 45,
+  "US": 1,
+  "KR": 40,
+  "RO": 1,
+  "RU": 5,
+  "BR": 1,
+  "TH": 5,
+  "AR": 1,
   "??": 779
  },
- "vpn_gate": 0,
- "updated_at": "2026-08-24T16:55:54Z"
+ "vpn_gate": 99,
+ "updated_at": "2026-08-24T17:01:28Z"
 }
