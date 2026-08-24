@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NetPulse — 全球网络延迟监测平台</title>
+<meta name="description" content="NetPulse 实时监测全球网络节点延迟与连通性，提供多协议、多地区的网络性能数据分析工具。">
+<style>
+:root {
+  --bg: #070A14;
+  --glass: rgba(255,255,255,.08);
+  --glass-hover: rgba(255,255,255,.12);
+  --primary: #7C5CFF;
+  --primary-glow: rgba(124,92,255,.35);
+  --accent: #69E7FF;
+  --success: #62FAD3;
+  --warning: #FFB74D;
+  --danger: #FF6B6B;
+  --text: #F7FAFF;
+  --text-sec: #9AA7C7;
+  --text-dim: #5A6A8A;
+  --border: rgba(255,255,255,.06);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 32px rgba(0,0,0,.4);
+  --font: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Glass Nav ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(7,10,20,.75);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav-brand svg { flex-shrink: 0; }
+.nav-links { display: flex; gap: 4px; }
+.nav-links a {
+  color: var(--text-sec);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: .9rem;
+  font-weight: 500;
+  transition: all .2s;
+  cursor: pointer;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--text);
+  background: var(--glass);
+}
+.nav-links a.active { color: var(--primary); }
+
+/* ===== Hero ===== */
+.hero {
+  padding: 100px 24px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(124,92,255,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--text) 30%, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  color: var(--text-sec);
+  font-size: 1.05rem;
+  max-width: 560px;
+  margin: 0 auto 32px;
+}
+
+/* ===== Cards ===== */
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: all .25s;
+}
+.card:hover { background: var(--glass-hover); }
+.card-title {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text-sec);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 12px;
+}
+.card-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== Stats Grid ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+}
+
+/* ===== Section ===== */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.section-header h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -.3px;
+}
+
+/* ===== Charts ===== */
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.chart-card { min-height: 280px; }
+.chart-card .card-title { margin-bottom: 16px; }
+
+/* ===== Table ===== */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .88rem;
+}
+th {
+  background: rgba(255,255,255,.04);
+  color: var(--text-sec);
+  font-weight: 600;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  padding: 12px 16px;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,.03); }
+
+/* ===== Badges ===== */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+.badge-strong { background: rgba(124,92,255,.2); color: var(--primary); }
+.badge-extreme { background: rgba(98,250,211,.15); color: var(--success); }
+.badge-normal { background: rgba(155,167,199,.15); color: var(--text-sec); }
+.badge-residential { background: rgba(105,231,255,.12); color: var(--accent); }
+.badge-datacenter { background: rgba(255,183,77,.12); color: var(--warning); }
+
+/* ===== Filters ===== */
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  align-items: center;
+}
+.filter-btn {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-sec);
+  font-size: .82rem;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: var(--font);
+}
+.filter-btn:hover { border-color: var(--primary); color: var(--text); }
+.filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.search-input {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  color: var(--text);
+  font-size: .85rem;
+  outline: none;
+  font-family: var(--font);
+  min-width: 200px;
+  transition: border-color .2s;
+}
+.search-input:focus { border-color: var(--primary); }
+.search-input::placeholder { color: var(--text-dim); }
+
+/* ===== Selection ===== */
+.sel-count {
+  color: var(--text-sec);
+  font-size: .85rem;
+  margin-left: auto;
+}
+.sel-count span { color: var(--accent); font-weight: 600; }
+.checkbox-cell {
+  width: 40px;
+  text-align: center;
+}
+.node-checkbox {
+  width: 18px; height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* ===== Subscribe Section ===== */
+.subscribe-section {
+  display: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+.subscribe-section.active { display: block; }
+.sub-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 16px;
+}
+.sub-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sub-card h3 svg { flex-shrink: 0; }
+.sub-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: var(--font);
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 4px 16px var(--primary-glow);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 24px var(--primary-glow); }
+.btn-secondary {
+  background: var(--glass);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--glass-hover); }
+.btn-sm { padding: 6px 14px; font-size: .8rem; }
+.btn-danger { background: rgba(255,107,107,.15); color: var(--danger); border: 1px solid rgba(255,107,107,.2); }
+.btn-danger:hover { background: rgba(255,107,107,.25); }
+
+/* ===== Output ===== */
+.output-box {
+  background: rgba(0,0,0,.3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  font-family: var(--mono);
+  font-size: .8rem;
+  line-height: 1.5;
+  max-height: 400px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--text);
+  margin-top: 12px;
+}
+.copy-hint {
+  color: var(--success);
+  font-size: .8rem;
+  margin-top: 8px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.copy-hint.show { opacity: 1; }
+
+/* ===== Pro Mode Toggle ===== */
+.pro-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all .3s;
+  backdrop-filter: blur(12px);
+}
+.pro-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.pro-toggle.active { color: var(--accent); border-color: var(--accent); background: rgba(105,231,255,.1); }
+.pro-toggle .tooltip {
+  position: absolute;
+  right: 52px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,.85);
+  color: var(--text);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: .75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+.pro-toggle:hover .tooltip { opacity: 1; }
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--text-dim);
+  font-size: .8rem;
+  border-top: 1px solid var(--border);
+}
+.footer a { color: var(--text-sec); text-decoration: none; }
+.footer a:hover { color: var(--text); }
+
+/* ===== Status Dot ===== */
+.status-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.status-dot.online { background: var(--success); box-shadow: 0 0 8px rgba(98,250,211,.4); }
+.status-dot.slow { background: var(--warning); box-shadow: 0 0 8px rgba(255,183,77,.4); }
+.status-dot.offline { background: var(--danger); box-shadow: 0 0 8px rgba(255,107,107,.4); }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 1.8rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .charts-row { grid-template-columns: 1fr; }
+  .nav { padding: 0 16px; }
+  .nav-links a { padding: 8px 10px; font-size: .82rem; }
+  .section { padding: 0 16px 40px; }
+  .hero { padding: 80px 16px 40px; }
+  .stats-grid { padding: 0 16px 24px; }
+  .subscribe-section { padding: 0 16px 40px; }
+  .card-value { font-size: 1.6rem; }
+}
+
+/* Focus */
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ===== Print ===== */
+@media print {
+  .nav, .pro-toggle, .filter-btn, .search-input, .btn, .node-checkbox { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card { background: #f5f5f5; border: 1px solid #ddd; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-brand">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <circle cx="14" cy="14" r="12" stroke="url(#ng)" stroke-width="2" fill="none"/>
+      <circle cx="14" cy="14" r="5" fill="url(#ng)"/>
+      <path d="M14 2v4M14 22v4M2 14h4M22 14h4" stroke="url(#ng)" stroke-width="1.5" stroke-linecap="round"/>
+      <defs><linearGradient id="ng" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#7C5CFF"/><stop offset="1" stop-color="#69E7FF"/></linearGradient></defs>
+    </svg>
+    NetPulse
+  </div>
+  <div class="nav-links">
+    <a class="active" onclick="switchView('dashboard')">仪表盘</a>
+    <a onclick="switchView('nodes')">节点列表</a>
+    <a onclick="switchView('sub')" id="subNavLink" style="opacity:0.4;pointer-events:none">高级导出</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<main><section class="hero">
+  <h1>全球网络延迟监测</h1>
+  <p>实时追踪全球 800+ 检测节点的网络性能、延迟分布与协议覆盖，为网络诊断提供数据支撑。</p>
+</section>
+
+<!-- ===== Dashboard View ===== -->
+<div id="view-dashboard">
+
+  <!-- Stats -->
+  <div class="stats-grid" id="statsGrid">
+    <div class="card"><div class="card-title">检测节点</div><div class="card-value" id="statTotal">-</div></div>
+    <div class="card"><div class="card-title">住宅节点</div><div class="card-value" id="statResidential">-</div></div>
+    <div class="card"><div class="card-title">协议种类</div><div class="card-value" id="statProtocols">-</div></div>
+    <div class="card"><div class="card-title">覆盖区域</div><div class="card-value" id="statCountries">-</div></div>
+    <div class="card"><div class="card-title">抗干扰 极强</div><div class="card-value" style="color:var(--success)" id="statExtreme">-</div></div>
+    <div class="card"><div class="card-title">抗干扰 强</div><div class="card-value" style="color:var(--primary)" id="statStrong">-</div></div>
+  </div>
+
+  <!-- Charts -->
+  <div class="section">
+    <div class="charts-row">
+      <div class="card chart-card">
+        <div class="card-title">协议分布</div>
+        <div id="protocolChart" style="height:220px;display:flex;align-items:flex-end;gap:8px;padding-bottom:24px;position:relative;"></div>
+      </div>
+      <div class="card chart-card">
+        <div class="card-title">抗干扰等级</div>
+        <div id="antiChart" style="height:220px;display:flex;align-items:flex-end;gap:8px;padding-bottom:24px;position:relative;"></div>
+      </div>
+    </div>
+
+    <!-- Recent nodes preview -->
+    <div class="section-header"><h2>最近检测节点</h2></div>
+    <div class="table-wrap">
+      <table>
+        <caption style="caption-side:bottom;font-size:.75rem;color:var(--text-dim);padding-top:6px;text-align:left">最近检测节点列表</caption>
+        <thead><tr>
+          <th>IP 地址</th><th>协议</th><th>类型</th><th>延迟</th><th>抗干扰</th><th>安全评分</th>
+        </tr></thead>
+        <tbody id="recentTable"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Nodes View ===== -->
+<div id="view-nodes" style="display:none">
+  <div class="section" style="padding-top:20px">
+    <div class="section-header">
+      <h2>节点列表</h2>
+      <div class="sel-count">已选 <span id="selCount">0</span> 个节点</div>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" onclick="setFilter('all',this)">全部</button>
+      <button class="filter-btn" onclick="setFilter('residential',this)">住宅 IP</button>
+      <button class="filter-btn" onclick="setFilter('vmess',this)">VMess</button>
+      <button class="filter-btn" onclick="setFilter('vless',this)">VLESS</button>
+      <button class="filter-btn" onclick="setFilter('trojan',this)">Trojan</button>
+      <button class="filter-btn" onclick="setFilter('shadowsocks',this)">SS</button>
+      <button class="filter-btn" onclick="setFilter('http',this)">HTTP</button>
+      <button class="filter-btn" onclick="setFilter('socks5',this)">SOCKS5</button>
+      <button class="filter-btn" onclick="setFilter('socks4',this)">SOCKS4</button>
+      <button class="filter-btn" onclick="setFilter('openvpn',this)">OpenVPN</button>
+      <input class="search-input" placeholder="搜索 IP 或地区..." oninput="filterNodes()" id="searchInput">
+    </div>
+    <div class="table-wrap">
+      <table>
+        <caption style="caption-side:bottom;font-size:.75rem;color:var(--text-dim);padding-top:6px;text-align:left">全部检测节点列表</caption>
+        <thead><tr>
+          <th class="checkbox-cell"><input type="checkbox" onchange="toggleAll(this)" class="node-checkbox"></th>
+          <th>IP 地址</th><th>协议</th><th>类型</th><th>延迟</th><th>抗干扰</th><th>安全分</th>
+        </tr></thead>
+        <tbody id="nodeTable"></tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="exportSelected()">🚀 导出选中配置</button>
+      <button class="btn btn-secondary" onclick="selectAll()">全选</button>
+      <button class="btn btn-secondary" onclick="clearSelection()">清空</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Subscribe View ===== -->
+<div id="view-sub" class="subscribe-section">
+  <div class="section-header"><h2>高级导出中心</h2></div>
+
+  <div class="sub-card">
+    <h3><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8" stroke="#7C5CFF" stroke-width="1.5"/><path d="M10 6v8M6 10h8" stroke="#7C5CFF" stroke-width="1.5" stroke-linecap="round"/></svg> Clash / Mihomo 订阅</h3>
+    <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:12px">生成 YAML 格式订阅配置，适用于 Clash Meta / Mihomo / CFW 等客户端。</p>
+    <div class="sub-actions">
+      <button class="btn btn-sm btn-primary" onclick="genClash()">生成 Clash YAML</button>
+      <button class="btn btn-sm btn-secondary" onclick="copyOutput('clashOut')">复制</button>
+    </div>
+    <div class="output-box" id="clashOut">请先选择节点后生成</div>
+  </div>
+
+  <div class="sub-card">
+    <h3><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="5" width="14" height="12" rx="2" stroke="#69E7FF" stroke-width="1.5" fill="none"/><path d="M7 5V3h6v2" stroke="#69E7FF" stroke-width="1.5"/></svg> v2rayNG / 通用 Base64 订阅</h3>
+    <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:12px">Base64 编码的通用订阅链接，适用于 v2rayNG、Shadowrocket、Quantumult 等。</p>
+    <div class="sub-actions">
+      <button class="btn btn-sm btn-primary" onclick="genBase64()">生成 Base64 订阅</button>
+      <button class="btn btn-sm btn-secondary" onclick="copyOutput('b64Out')">复制</button>
+    </div>
+    <div class="output-box" id="b64Out">请先选择节点后生成</div>
+  </div>
+
+  <div class="sub-card">
+    <h3><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2a8 8 0 100 16 8 8 0 000-16z" stroke="#62FAD3" stroke-width="1.5" fill="none"/><path d="M10 6v4l3 3" stroke="#62FAD3" stroke-width="1.5" stroke-linecap="round"/></svg> 住宅 IP 节点 (VPN Gate)</h3>
+    <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:12px">OpenVPN 配置文件下载，来自 VPN Gate 学术志愿者网络，节点为真实住宅 IP 地址。</p>
+    <div class="sub-actions" id="residentialActions">
+      <span style="color:var(--text-dim);font-size:.85rem">数据采集中，请稍后再试...</span>
+    </div>
+  </div>
+</div>
+
+<!-- Pro Mode Toggle -->
+<button class="pro-toggle" id="proToggle" onclick="toggleProMode()" title="切换专业模式">
+  <span class="tooltip">专业模式</span>
+  🔒
+</button>
+
+<!-- Footer -->
+</main>
+<footer class="footer">
+  <p>NetPulse — 全球网络延迟监测平台 · 数据来源：<a href="https://www.vpngate.net/" target="_blank" rel="noopener noreferrer">VPN Gate</a> · <a href="https://github.com/gfpcom/free-proxy-list" target="_blank" rel="noopener noreferrer">GitHub 开源社区</a></p>
+  <p style="margin-top:4px">本站仅提供网络性能数据，请遵守当地法律法规</p>
+</footer>
+
+<script>
+// ===== 数据 =====
+let allNodes = [];
+let stats = {};
+let currentFilter = 'all';
+let selectedIds = new Set();
+let proMode = false;
+
+// ===== 初始化 =====
+async function init() {
+  try {
+    const [nodesRes, statsRes] = await Promise.all([
+      fetch('data/nodes_compact.json'),
+      fetch('data/stats.json')
+    ]);
+    allNodes = await nodesRes.json();
+    stats = await statsRes.json();
+    renderDashboard();
+    renderNodes();
+  } catch(e) {
+    console.warn('数据加载失败，使用演示数据', e);
+    loadDemoData();
+  }
+}
+
+function loadDemoData() {
+  stats = {
+    total: 0, residential: 0, datacenter: 0,
+    by_protocol: {}, by_anti_censorship: {}, by_country: {},
+    updated_at: new Date().toISOString()
+  };
+  allNodes = [];
+  renderDashboard();
+  renderNodes();
+}
+
+// ===== 视图切换 =====
+function switchView(view) {
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('view-dashboard').style.display = view === 'dashboard' ? '' : 'none';
+  document.getElementById('view-nodes').style.display = view === 'nodes' ? '' : 'none';
+  document.getElementById('view-sub').classList.toggle('active', view === 'sub');
+  
+  const links = document.querySelectorAll('.nav-links a');
+  const idx = view === 'dashboard' ? 0 : view === 'nodes' ? 1 : 2;
+  if (links[idx]) links[idx].classList.add('active');
+  
+  if (view === 'sub') renderSubNodes();
+}
+
+// ===== 仪表盘 =====
+function renderDashboard() {
+  const s = stats;
+  document.getElementById('statTotal').textContent = s.total || 0;
+  document.getElementById('statResidential').textContent = s.residential || 0;
+  document.getElementById('statProtocols').textContent = Object.keys(s.by_protocol || {}).length || 0;
+  document.getElementById('statCountries').textContent = Object.keys(s.by_country || {}).length || 0;
+  document.getElementById('statExtreme').textContent = (s.by_anti_censorship || {}).极强 || 0;
+  document.getElementById('statStrong').textContent = (s.by_anti_censorship || {}).强 || 0;
+
+  renderProtocolChart();
+  renderAntiChart();
+  renderRecentNodes();
+}
+
+function renderProtocolChart() {
+  const el = document.getElementById('protocolChart');
+  const protos = stats.by_protocol || {};
+  const entries = Object.entries(protos).sort((a,b) => b[1]-a[1]);
+  if (!entries.length) { el.innerHTML = '<span style="color:var(--text-dim);font-size:.85rem">暂无数据</span>'; return; }
+  
+  const maxVal = Math.max(...entries.map(e => e[1]));
+  const colors = {vmess:'#7C5CFF',vless:'#69E7FF',trojan:'#62FAD3',shadowsocks:'#FFB74D',http:'#FF6B6B',socks5:'#9AA7C7',socks4:'#5A6A8A',openvpn:'#FF8A65'};
+  
+  el.innerHTML = entries.map(([k,v]) => {
+    const pct = (v/maxVal*100).toFixed(0);
+    const color = colors[k] || '#7C5CFF';
+    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
+      <div style="font-size:.7rem;color:var(--text-sec);margin-bottom:4px">${v}</div>
+      <div style="width:100%;max-width:48px;height:${pct}%;background:${color};border-radius:4px 4px 0 0;opacity:.85;transition:height .6s"></div>
+      <div style="font-size:.72rem;color:var(--text-dim);margin-top:6px">${k}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderAntiChart() {
+  const el = document.getElementById('antiChart');
+  const ac = stats.by_anti_censorship || {};
+  const entries = Object.entries(ac).sort((a,b) => b[1]-a[1]);
+  if (!entries.length) { el.innerHTML = '<span style="color:var(--text-dim);font-size:.85rem">暂无数据</span>'; return; }
+  
+  const maxVal = Math.max(...entries.map(e => e[1]));
+  const colors = {极强:'#62FAD3',强:'#7C5CFF',普通:'#5A6A8A'};
+  
+  el.innerHTML = entries.map(([k,v]) => {
+    const pct = (v/maxVal*100).toFixed(0);
+    const color = colors[k] || '#7C5CFF';
+    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
+      <div style="font-size:.7rem;color:var(--text-sec);margin-bottom:4px">${v}</div>
+      <div style="width:100%;max-width:48px;height:${pct}%;background:${color};border-radius:4px 4px 0 0;opacity:.85;transition:height .6s"></div>
+      <div style="font-size:.72rem;color:var(--text-dim);margin-top:6px">${k}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderRecentNodes() {
+  const el = document.getElementById('recentTable');
+  const recent = allNodes.slice(0, 15);
+  if (!recent.length) { el.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:32px">暂无数据</td></tr>'; return; }
+  
+  el.innerHTML = recent.map(n => {
+    const ip = n.ip || '-';
+    const ping = n.g || 999;
+    const statusClass = ping < 200 ? 'online' : ping < 500 ? 'slow' : 'offline';
+    const acBadge = n.ac === '极强' ? 'badge-extreme' : n.ac === '强' ? 'badge-strong' : 'badge-normal';
+    return `<tr>
+      <td style="font-family:var(--mono);font-size:.8rem">${ip.length > 20 ? ip.slice(0,20)+'...' : ip}</td>
+      <td><span class="badge badge-strong">${n.p || '-'}</span></td>
+      <td><span class="badge ${n.rs ? 'badge-residential' : 'badge-datacenter'}">${n.rs ? '住宅' : '数据中心'}</span></td>
+      <td><span class="status-dot ${statusClass}"></span>${ping}ms</td>
+      <td><span class="badge ${acBadge}">${n.ac}</span></td>
+      <td><span style="color:${n.s > 70 ? 'var(--success)' : n.s > 40 ? 'var(--warning)' : 'var(--danger)'}">${n.s}/100</span></td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== 节点列表 =====
+function renderNodes() {
+  const el = document.getElementById('nodeTable');
+  const search = (document.getElementById('searchInput').value || '').toLowerCase();
+  
+  let filtered = allNodes;
+  if (currentFilter !== 'all') {
+    if (currentFilter === 'residential') {
+      filtered = filtered.filter(n => n.rs);
+    } else {
+      filtered = filtered.filter(n => n.p === currentFilter);
+    }
+  }
+  if (search) {
+    filtered = filtered.filter(n => (n.ip || '').toLowerCase().includes(search) || (n.c || '').toLowerCase().includes(search));
+  }
+  
+  if (!filtered.length) {
+    el.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-dim);padding:32px">没有匹配的节点</td></tr>';
+    document.getElementById('selCount').textContent = selectedIds.size;
+    return;
+  }
+  
+  el.innerHTML = filtered.map(n => {
+    const ip = n.ip || '-';
+    const ping = n.g || 999;
+    const statusClass = ping < 200 ? 'online' : ping < 500 ? 'slow' : 'offline';
+    const acBadge = n.ac === '极强' ? 'badge-extreme' : n.ac === '强' ? 'badge-strong' : 'badge-normal';
+    const checked = selectedIds.has(n.id) ? 'checked' : '';
+    return `<tr>
+      <td class="checkbox-cell"><input type="checkbox" class="node-checkbox" ${checked} onchange="toggleNode('${n.id}')"></td>
+      <td style="font-family:var(--mono);font-size:.8rem">${ip.length > 25 ? ip.slice(0,25)+'...' : ip}</td>
+      <td><span class="badge badge-strong">${n.p || '-'}</span></td>
+      <td><span class="badge ${n.rs ? 'badge-residential' : 'badge-datacenter'}">${n.rs ? '住宅' : '数据中心'}</span></td>
+      <td><span class="status-dot ${statusClass}"></span>${ping}ms</td>
+      <td><span class="badge ${acBadge}">${n.ac}</span></td>
+      <td><span style="color:${n.s > 70 ? 'var(--success)' : n.s > 40 ? 'var(--warning)' : 'var(--danger)'}">${n.s}</span></td>
+    </tr>`;
+  }).join('');
+  
+  document.getElementById('selCount').textContent = selectedIds.size;
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderNodes();
+}
+
+function filterNodes() {
+  renderNodes();
+}
+
+function toggleNode(id) {
+  if (selectedIds.has(id)) selectedIds.delete(id);
+  else selectedIds.add(id);
+  document.getElementById('selCount').textContent = selectedIds.size;
+  renderNodes();
+}
+
+function toggleAll(cb) {
+  const search = (document.getElementById('searchInput').value || '').toLowerCase();
+  let filtered = allNodes;
+  if (currentFilter !== 'all') {
+    if (currentFilter === 'residential') filtered = filtered.filter(n => n.rs);
+    else filtered = filtered.filter(n => n.p === currentFilter);
+  }
+  if (search) filtered = filtered.filter(n => (n.ip||'').toLowerCase().includes(search) || (n.c||'').toLowerCase().includes(search));
+  
+  filtered.forEach(n => {
+    if (cb.checked) selectedIds.add(n.id);
+    else selectedIds.delete(n.id);
+  });
+  document.getElementById('selCount').textContent = selectedIds.size;
+  renderNodes();
+}
+
+function selectAll() {
+  allNodes.forEach(n => selectedIds.add(n.id));
+  document.getElementById('selCount').textContent = selectedIds.size;
+  renderNodes();
+}
+
+function clearSelection() {
+  selectedIds.clear();
+  document.getElementById('selCount').textContent = '0';
+  renderNodes();
+}
+
+// ===== 导出 / 订阅 =====
+function getSelectedNodes() {
+  return allNodes.filter(n => selectedIds.has(n.id));
+}
+
+function exportSelected() {
+  const sel = getSelectedNodes();
+  if (!sel.length) { alert('请先选择节点'); return; }
+  switchView('sub');
+}
+
+function renderSubNodes() {
+  const sel = getSelectedNodes();
+  const el = document.getElementById('residentialActions');
+  const residential = allNodes.filter(n => n.rs);
+  if (residential.length) {
+    el.innerHTML = `<span style="color:var(--text-sec);font-size:.85rem">${residential.length} 个住宅 IP 节点可用</span>
+      <button class="btn btn-sm btn-secondary" onclick="genResidentialOVPN()">生成 OpenVPN 配置</button>`;
+  }
+}
+
+function genClash() {
+  const sel = getSelectedNodes();
+  const out = document.getElementById('clashOut');
+  if (!sel.length) { out.textContent = '请先在节点列表中选择节点'; return; }
+  
+  let yaml = `# NetPulse 订阅配置\n# 生成时间: ${new Date().toLocaleString()}\n# 节点数: ${sel.length}\n\nport: 7890\nsocks-port: 7891\nmixed-port: 7892\nallow-lan: true\nmode: Rule\nlog-level: info\n\ndns:\n  enabled: true\n  listen: 0.0.0.0:53\n  default-nameserver:\n    - 223.5.5.5\n    - 114.114.114.114\n  nameserver:\n    - https://dns.alidns.com/dns-query\n\nproxies:\n`;
+  
+  sel.forEach((n, i) => {
+    const name = `${n.p}-${n.c || 'unknown'}-${i+1}`;
+    const ip = n.ip || '0.0.0.0';
+    const port = n.port || 443;
+    const proto = n.p || 'http';
+    
+    if (proto === 'vmess') {
+      yaml += `  - name: "${name}"\n    type: vmess\n    server: ${ip}\n    port: ${port}\n    uuid: auto\n    alterId: 0\n    cipher: auto\n    tls: true\n    skip-cert-verify: true\n    udp: true\n\n`;
+    } else if (proto === 'vless') {
+      yaml += `  - name: "${name}"\n    type: vless\n    server: ${ip}\n    port: ${port}\n    uuid: auto\n    flow: xtls-rprx-vision\n    tls: true\n    servername: \n    reality: false\n    udp: true\n\n`;
+    } else if (proto === 'trojan') {
+      yaml += `  - name: "${name}"\n    type: trojan\n    server: ${ip}\n    port: ${port}\n    password: auto\n    udp: true\n    sni: \n    skip-cert-verify: true\n\n`;
+    } else if (proto === 'shadowsocks' || proto === 'ss') {
+      yaml += `  - name: "${name}"\n    type: ss\n    server: ${ip}\n    port: ${port}\n    cipher: aes-256-gcm\n    password: auto\n    udp: true\n\n`;
+    } else if (proto === 'socks5' || proto === 'socks4') {
+      yaml += `  - name: "${name}"\n    type: socks5\n    server: ${ip}\n    port: ${port}\n    udp: true\n\n`;
+    } else {
+      yaml += `  - name: "${name}"\n    type: http\n    server: ${ip}\n    port: ${port}\n    tls: false\n\n`;
+    }
+  });
+  
+  yaml += `proxy-groups:\n  - name: "Proxy"\n    type: select\n    proxies:\n${sel.map((_,i) => `      - "${sel[i].p || 'http'}-${sel[i].c || 'unknown'}-${i+1}"`).join('\n')}\n\nrules:\n  - MATCH,Proxy\n`;
+  
+  out.textContent = yaml;
+  showCopyHint(out);
+}
+
+function genBase64() {
+  const sel = getSelectedNodes();
+  const out = document.getElementById('b64Out');
+  if (!sel.length) { out.textContent = '请先在节点列表中选择节点'; return; }
+  
+  const links = [];
+  sel.forEach((n, i) => {
+    const ip = n.ip || '0.0.0.0';
+    const port = n.port || 443;
+    const proto = n.p || 'http';
+    const name = `${proto}-${n.c || 'unknown'}-${i+1}`;
+    
+    if (proto === 'vmess' && n.cl) {
+      links.push(n.cl);
+    } else if (proto === 'trojan' && n.cl) {
+      links.push(n.cl);
+    } else if (proto === 'vless' && n.cl) {
+      links.push(n.cl);
+    } else if (proto === 'shadowsocks' || proto === 'ss') {
+      if (n.cl) links.push(n.cl);
+      else links.push(`ss://YWVzLTI1Ni1nY206cGFzc3dvcmQ@${ip}:${port}#${encodeURIComponent(name)}`);
+    } else if (proto === 'socks5') {
+      links.push(`socks5://${ip}:${port}#${encodeURIComponent(name)}`);
+    } else {
+      links.push(`http://${ip}:${port}#${encodeURIComponent(name)}`);
+    }
+  });
+  
+  const b64 = btoa(links.join('\n'));
+  out.textContent = b64;
+  showCopyHint(out);
+}
+
+function genResidentialOVPN() {
+  const residential = allNodes.filter(n => n.rs);
+  const out = document.getElementById('clashOut');
+  if (!residential.length) { out.textContent = '暂无住宅 IP 节点数据'; return; }
+  out.textContent = `已选择 ${residential.length} 个住宅 IP 节点\nOpenVPN 配置文件将在数据采集后提供\n\n请等待 GitHub Actions 下一次采集完成`;
+}
+
+function copyOutput(id) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.textContent).then(() => {
+    const hint = el.parentElement.querySelector('.copy-hint') || (() => {
+      const h = document.createElement('div');
+      h.className = 'copy-hint';
+      h.textContent = '✓ 已复制到剪贴板';
+      el.parentElement.appendChild(h);
+      return h;
+    })();
+    hint.classList.add('show');
+    setTimeout(() => hint.classList.remove('show'), 2000);
+  }).catch(() => alert('复制失败，请手动选取复制'));
+}
+
+function showCopyHint(el) {
+  const hint = el.parentElement.querySelector('.copy-hint') || (() => {
+    const h = document.createElement('div');
+    h.className = 'copy-hint';
+    h.textContent = '✓ 已生成，点击复制按钮获取';
+    el.parentElement.appendChild(h);
+    return h;
+  })();
+  hint.classList.add('show');
+  setTimeout(() => hint.classList.remove('show'), 3000);
+}
+
+// ===== 专业模式 =====
+function toggleProMode() {
+  proMode = !proMode;
+  const btn = document.getElementById('proToggle');
+  const subLink = document.getElementById('subNavLink');
+  
+  if (proMode) {
+    btn.classList.add('active');
+    btn.innerHTML = '<span class="tooltip">退出专业模式</span>🔓';
+    subLink.style.opacity = '1';
+    subLink.style.pointerEvents = 'auto';
+  } else {
+    btn.classList.remove('active');
+    btn.innerHTML = '<span class="tooltip">专业模式</span>🔒';
+    subLink.style.opacity = '0.4';
+    subLink.style.pointerEvents = 'none';
+    if (document.getElementById('view-sub').classList.contains('active')) {
+      switchView('dashboard');
+    }
+  }
+}
+
+// 点击 5 次解锁（备用入口）
+let clickCount = 0;
+document.querySelector('.nav-brand').addEventListener('dblclick', () => {
+  clickCount++;
+  if (clickCount >= 3) {
+    clickCount = 0;
+    if (!proMode) toggleProMode();
+  }
+});
+
+// ===== 启动 =====
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+ "total": 779,
+ "residential": 0,
+ "datacenter": 779,
+ "by_protocol": {
+  "vmess": 200,
+  "trojan": 149,
+  "shadowsocks": 1,
+  "vless": 129,
+  "socks4": 46,
+  "http": 201,
+  "socks5": 53
+ },
+ "by_anti_censorship": {
+  "强": 350,
+  "极强": 129,
+  "普通": 300
+ },
+ "by_country": {
+  "??": 779
+ },
+ "vpn_gate": 0,
+ "updated_at": "2026-08-24T16:55:54Z"
+}

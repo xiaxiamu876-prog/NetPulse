@@ -1,0 +1,33 @@
+name: NetPulse 数据采集
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # 每6小时运行一次
+  workflow_dispatch:          # 支持手动触发
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 运行采集脚本
+        run: python3 collector.py
+
+      - name: 提交更新
+        run: |
+          git config user.name "NetPulse Bot"
+          git config user.email "bot@netpulse.dev"
+          git add data/
+          git diff --quiet && git diff --staged --quiet || \
+            git commit -m "📡 自动更新网络检测数据 $(date +'%Y-%m-%d %H:%M')"
+          git push
