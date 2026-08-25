@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-08-25 06:21:55 UTC
+# 生成时间: 2026-08-25 12:20:19 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -37,34 +37,6 @@ proxies:
     reality-opts:
       public-key: -IB2TTE8okZLfP6uj-T5_PSTp-nJepu3aAEyrgSJHEU
       short-id: 82cd39e402eea8a6
-  - name: "NetPulse-tranquil-whale"
-    type: vless
-    server: 151.242.11.238
-    port: 443
-    uuid: 2bb2849b-13ee-4277-8e8e-12fa98ea26d2
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: 5FCt11qZUn5VDN-AcgY5_-Y3FfQPHkIiNRQ4t2ANzE0
-      short-id: 217745c7855b39f7
-  - name: "NetPulse-balmy-summit"
-    type: vless
-    server: 172.236.233.59
-    port: 443
-    uuid: 0b98e2ac-3770-44e5-ac26-99932534a9f8
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: Y2XlijV6NaE_huWY3IW0iRFdqY9wRcWLdlJmJYZwDmc
-      short-id: 2e6a9ae9a452c8b1
   - name: "NetPulse-merry-falcon"
     type: vless
     server: 172.238.19.239
@@ -79,6 +51,34 @@ proxies:
     reality-opts:
       public-key: gXBDxznHZ5iwgftTIn6R6NrnO6LOLndQ_hSkUDY6jS8
       short-id: bd926283f554d5fa
+  - name: "NetPulse-golden-badger"
+    type: vless
+    server: 167.233.246.24
+    port: 443
+    uuid: 6174003f-cf7e-422f-aa35-662e29debb6a
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: Ev15XWL-wmNE0yTTtYf_bG_G_YN1x2nYaV42JGtQogU
+      short-id: eb4304893f55fa82
+  - name: "NetPulse-plucky-heron"
+    type: vless
+    server: 49.13.92.156
+    port: 443
+    uuid: c686af39-cfe4-4c67-bc99-536a505af27e
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: QfQwHAZyrDBB7m_NWWSbzblY83R_F8SaqnVA3nTHERQ
+      short-id: 683e7a619f453455
 
 proxy-groups:
   - name: "🚀 自动选择"
@@ -86,9 +86,9 @@ proxy-groups:
     proxies:
       - "NetPulse-nimble-comet"
       - "NetPulse-breezy-yak"
-      - "NetPulse-tranquil-whale"
-      - "NetPulse-balmy-summit"
       - "NetPulse-merry-falcon"
+      - "NetPulse-golden-badger"
+      - "NetPulse-plucky-heron"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -98,9 +98,9 @@ proxy-groups:
     proxies:
       - "NetPulse-nimble-comet"
       - "NetPulse-breezy-yak"
-      - "NetPulse-tranquil-whale"
-      - "NetPulse-balmy-summit"
       - "NetPulse-merry-falcon"
+      - "NetPulse-golden-badger"
+      - "NetPulse-plucky-heron"
       - "🚀 自动选择"
   - name: PROXY
     type: select
