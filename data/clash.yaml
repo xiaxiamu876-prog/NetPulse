@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-01 02:10:23 UTC
+# 生成时间: 2026-09-01 10:35:07 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,48 +9,6 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-tranquil-whale"
-    type: vless
-    server: 151.242.11.238
-    port: 443
-    uuid: 2bb2849b-13ee-4277-8e8e-12fa98ea26d2
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: 5FCt11qZUn5VDN-AcgY5_-Y3FfQPHkIiNRQ4t2ANzE0
-      short-id: 217745c7855b39f7
-  - name: "NetPulse-sunny-ibex"
-    type: vless
-    server: 65.108.48.13
-    port: 443
-    uuid: 96e217ed-69d3-421a-8f13-1dc62e53f9ec
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: gcc5BcuszMHez_FwB8AAmqgrHTwC1Sb7lHgoaW2-xXs
-      short-id: c56ea70059a78451
-  - name: "NetPulse-balmy-summit"
-    type: vless
-    server: 172.236.233.59
-    port: 443
-    uuid: abd1c29a-94cb-4648-8d1e-5baae9d2a807
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: oTMDLwY2hloBfA7ShzVsrFhjL4QXR6mY32B93rMLxV0
-      short-id: 525e0ffc773f48ba
   - name: "NetPulse-plucky-heron"
     type: vless
     server: 49.13.92.156
@@ -65,11 +23,11 @@ proxies:
     reality-opts:
       public-key: QfQwHAZyrDBB7m_NWWSbzblY83R_F8SaqnVA3nTHERQ
       short-id: 683e7a619f453455
-  - name: "NetPulse-nimble-comet"
+  - name: "NetPulse-breezy-yak"
     type: vless
-    server: 167.233.174.156
+    server: 172.232.118.174
     port: 443
-    uuid: e49a652f-d004-4469-b672-2bcb5fc3f75d
+    uuid: a78f818d-a81a-478b-8d9d-2240424f1071
     network: tcp
     tls: true
     udp: true
@@ -77,18 +35,60 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: fdyevMpmW3br0I7dALMuxchOGLLKC5zTtqHq1RapQXg
-      short-id: afd7d8ed24e6fcde
+      public-key: l0TU3ZZfpjse2yLir81_sdD_4sYrY73oYng_A0vyKS0
+      short-id: 70a0bddf9199d74f
+  - name: "NetPulse-merry-falcon"
+    type: vless
+    server: 172.238.19.239
+    port: 443
+    uuid: 6a588b40-9d1f-426d-bfef-e602fa86bbfb
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: m5VKCansDt_RdvHhM6aqy930HHHCSicfH975ELbmdn4
+      short-id: 625a574968eea29c
+  - name: "NetPulse-tranquil-whale"
+    type: vless
+    server: 151.242.11.238
+    port: 443
+    uuid: 2bb2849b-13ee-4277-8e8e-12fa98ea26d2
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: 5FCt11qZUn5VDN-AcgY5_-Y3FfQPHkIiNRQ4t2ANzE0
+      short-id: 217745c7855b39f7
+  - name: "NetPulse-balmy-summit"
+    type: vless
+    server: 172.236.233.59
+    port: 443
+    uuid: abd1c29a-94cb-4648-8d1e-5baae9d2a807
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: oTMDLwY2hloBfA7ShzVsrFhjL4QXR6mY32B93rMLxV0
+      short-id: 525e0ffc773f48ba
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-tranquil-whale"
-      - "NetPulse-sunny-ibex"
-      - "NetPulse-balmy-summit"
       - "NetPulse-plucky-heron"
-      - "NetPulse-nimble-comet"
+      - "NetPulse-breezy-yak"
+      - "NetPulse-merry-falcon"
+      - "NetPulse-tranquil-whale"
+      - "NetPulse-balmy-summit"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-tranquil-whale"
-      - "NetPulse-sunny-ibex"
-      - "NetPulse-balmy-summit"
       - "NetPulse-plucky-heron"
-      - "NetPulse-nimble-comet"
+      - "NetPulse-breezy-yak"
+      - "NetPulse-merry-falcon"
+      - "NetPulse-tranquil-whale"
+      - "NetPulse-balmy-summit"
       - "🚀 自动选择"
   - name: PROXY
     type: select
