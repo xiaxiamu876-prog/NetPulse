@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-01 20:12:04 UTC
+# 生成时间: 2026-09-02 01:33:29 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -23,11 +23,11 @@ proxies:
     reality-opts:
       public-key: gcc5BcuszMHez_FwB8AAmqgrHTwC1Sb7lHgoaW2-xXs
       short-id: c56ea70059a78451
-  - name: "NetPulse-merry-falcon"
+  - name: "NetPulse-witty-grove"
     type: vless
-    server: 172.238.19.239
+    server: 172.235.216.248
     port: 443
-    uuid: 6a588b40-9d1f-426d-bfef-e602fa86bbfb
+    uuid: ca9ee5fb-204a-4cc6-b03e-084c2904fbf8
     network: tcp
     tls: true
     udp: true
@@ -35,13 +35,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: m5VKCansDt_RdvHhM6aqy930HHHCSicfH975ELbmdn4
-      short-id: 625a574968eea29c
-  - name: "NetPulse-breezy-yak"
+      public-key: 1UIGu69Hj8VTLIg5bsYb58kb7saMcVObRMo1ZlPJKUs
+      short-id: 89e9afea27bc7548
+  - name: "NetPulse-nimble-comet"
     type: vless
-    server: 172.232.118.174
+    server: 167.233.174.156
     port: 443
-    uuid: a78f818d-a81a-478b-8d9d-2240424f1071
+    uuid: e49a652f-d004-4469-b672-2bcb5fc3f75d
     network: tcp
     tls: true
     udp: true
@@ -49,13 +49,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: l0TU3ZZfpjse2yLir81_sdD_4sYrY73oYng_A0vyKS0
-      short-id: 70a0bddf9199d74f
-  - name: "NetPulse-plucky-heron"
+      public-key: fdyevMpmW3br0I7dALMuxchOGLLKC5zTtqHq1RapQXg
+      short-id: afd7d8ed24e6fcde
+  - name: "NetPulse-dapper-marmot"
     type: vless
-    server: 49.13.92.156
+    server: 172.237.81.164
     port: 443
-    uuid: c686af39-cfe4-4c67-bc99-536a505af27e
+    uuid: 724d4d02-8e05-4cfb-bec1-fc19af1fb6b4
     network: tcp
     tls: true
     udp: true
@@ -63,8 +63,8 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: QfQwHAZyrDBB7m_NWWSbzblY83R_F8SaqnVA3nTHERQ
-      short-id: 683e7a619f453455
+      public-key: ja4z9ePHousmav5E4CqDxdP5eKi5I0MPHeNiM0_TbQQ
+      short-id: bc33ead89c5254e1
   - name: "NetPulse-balmy-summit"
     type: vless
     server: 172.236.233.59
@@ -85,9 +85,9 @@ proxy-groups:
     type: url-test
     proxies:
       - "NetPulse-sunny-ibex"
-      - "NetPulse-merry-falcon"
-      - "NetPulse-breezy-yak"
-      - "NetPulse-plucky-heron"
+      - "NetPulse-witty-grove"
+      - "NetPulse-nimble-comet"
+      - "NetPulse-dapper-marmot"
       - "NetPulse-balmy-summit"
     url: http://www.gstatic.com/generate_204
     interval: 300
@@ -97,9 +97,9 @@ proxy-groups:
     type: select
     proxies:
       - "NetPulse-sunny-ibex"
-      - "NetPulse-merry-falcon"
-      - "NetPulse-breezy-yak"
-      - "NetPulse-plucky-heron"
+      - "NetPulse-witty-grove"
+      - "NetPulse-nimble-comet"
+      - "NetPulse-dapper-marmot"
       - "NetPulse-balmy-summit"
       - "🚀 自动选择"
   - name: PROXY
