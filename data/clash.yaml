@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-03 20:11:01 UTC
+# 生成时间: 2026-09-04 01:30:43 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -37,6 +37,34 @@ proxies:
     reality-opts:
       public-key: l0TU3ZZfpjse2yLir81_sdD_4sYrY73oYng_A0vyKS0
       short-id: 70a0bddf9199d74f
+  - name: "NetPulse-sunny-ibex"
+    type: vless
+    server: 65.108.48.13
+    port: 443
+    uuid: 96e217ed-69d3-421a-8f13-1dc62e53f9ec
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: gcc5BcuszMHez_FwB8AAmqgrHTwC1Sb7lHgoaW2-xXs
+      short-id: c56ea70059a78451
+  - name: "NetPulse-golden-badger"
+    type: vless
+    server: 167.233.246.24
+    port: 443
+    uuid: 6174003f-cf7e-422f-aa35-662e29debb6a
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: Ev15XWL-wmNE0yTTtYf_bG_G_YN1x2nYaV42JGtQogU
+      short-id: eb4304893f55fa82
   - name: "NetPulse-dapper-marmot"
     type: vless
     server: 172.237.81.164
@@ -51,34 +79,6 @@ proxies:
     reality-opts:
       public-key: ja4z9ePHousmav5E4CqDxdP5eKi5I0MPHeNiM0_TbQQ
       short-id: bc33ead89c5254e1
-  - name: "NetPulse-cosmic-cobra"
-    type: vless
-    server: 172.237.5.239
-    port: 443
-    uuid: 4b764a40-a0e9-44b6-a40b-b37e4c9c8de3
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: t3kAchdhwKZA0Qz8oBDx1GSldAj5MbkqHcyI-n4jRBA
-      short-id: c8c981cc645ff401
-  - name: "NetPulse-modest-tapir"
-    type: vless
-    server: 104.105.138.244
-    port: 443
-    uuid: f5c4664b-67ab-4d92-801d-a60984e104d4
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: rpROz1JNz8wRk2QT5o7jwE9CzJUWMvPNXoeWyS3c1WM
-      short-id: 09994e53af766acd
 
 proxy-groups:
   - name: "🚀 自动选择"
@@ -86,9 +86,9 @@ proxy-groups:
     proxies:
       - "NetPulse-nimble-comet"
       - "NetPulse-breezy-yak"
+      - "NetPulse-sunny-ibex"
+      - "NetPulse-golden-badger"
       - "NetPulse-dapper-marmot"
-      - "NetPulse-cosmic-cobra"
-      - "NetPulse-modest-tapir"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -98,9 +98,9 @@ proxy-groups:
     proxies:
       - "NetPulse-nimble-comet"
       - "NetPulse-breezy-yak"
+      - "NetPulse-sunny-ibex"
+      - "NetPulse-golden-badger"
       - "NetPulse-dapper-marmot"
-      - "NetPulse-cosmic-cobra"
-      - "NetPulse-modest-tapir"
       - "🚀 自动选择"
   - name: PROXY
     type: select
