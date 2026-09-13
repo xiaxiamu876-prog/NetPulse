@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-13 15:08:04 UTC
+# 生成时间: 2026-09-13 19:54:59 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-tranquil-impala"
+  - name: "NetPulse-fancy-parrot"
     type: vless
-    server: 52.199.164.226
+    server: 57.180.249.150
     port: 443
-    uuid: 9fe4a774-092b-4e01-bad5-75cd566e007e
+    uuid: 71e9f3e1-4a12-4e57-908d-c5099e04e70c
     network: tcp
     tls: true
     udp: true
@@ -21,8 +21,8 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: WPGtwJBgC5kRgdhgp9GyUXO6Uwi5KUU78x-IOwaLEEc
-      short-id: 1ae7699447490ce6
+      public-key: drTYS3Wv2fbTyCgic8WSNSRzr_TBsFUN4KFSQFHM6VY
+      short-id: bdb4decb6becbd51
   - name: "NetPulse-twinkly-lobster"
     type: vless
     server: 3.113.17.128
@@ -51,11 +51,11 @@ proxies:
     reality-opts:
       public-key: OtlvJi3jI5d41OjcjG5H8cpHCe-UZZBdaq7MSdZSAXY
       short-id: 061ebc8a7d8aecf2
-  - name: "NetPulse-proud-walrus"
+  - name: "NetPulse-golden-badger"
     type: vless
-    server: 13.230.181.40
+    server: 167.233.246.24
     port: 443
-    uuid: 3c4d843f-b518-47b2-8b0c-2889a089e667
+    uuid: 6174003f-cf7e-422f-aa35-662e29debb6a
     network: tcp
     tls: true
     udp: true
@@ -63,13 +63,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: G8ydvjoVmxDbfG35DivfUPSXDcD3vMRGys-p1MbKdx4
-      short-id: eedffc107552845d
-  - name: "NetPulse-fancy-parrot"
+      public-key: Ev15XWL-wmNE0yTTtYf_bG_G_YN1x2nYaV42JGtQogU
+      short-id: eb4304893f55fa82
+  - name: "NetPulse-modest-tapir"
     type: vless
-    server: 57.180.249.150
+    server: 104.105.138.244
     port: 443
-    uuid: 71e9f3e1-4a12-4e57-908d-c5099e04e70c
+    uuid: f5c4664b-67ab-4d92-801d-a60984e104d4
     network: tcp
     tls: true
     udp: true
@@ -77,18 +77,18 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: drTYS3Wv2fbTyCgic8WSNSRzr_TBsFUN4KFSQFHM6VY
-      short-id: bdb4decb6becbd51
+      public-key: rpROz1JNz8wRk2QT5o7jwE9CzJUWMvPNXoeWyS3c1WM
+      short-id: 09994e53af766acd
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-tranquil-impala"
+      - "NetPulse-fancy-parrot"
       - "NetPulse-twinkly-lobster"
       - "NetPulse-seoul-foundation-1"
-      - "NetPulse-proud-walrus"
-      - "NetPulse-fancy-parrot"
+      - "NetPulse-golden-badger"
+      - "NetPulse-modest-tapir"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-tranquil-impala"
+      - "NetPulse-fancy-parrot"
       - "NetPulse-twinkly-lobster"
       - "NetPulse-seoul-foundation-1"
-      - "NetPulse-proud-walrus"
-      - "NetPulse-fancy-parrot"
+      - "NetPulse-golden-badger"
+      - "NetPulse-modest-tapir"
       - "🚀 自动选择"
   - name: PROXY
     type: select
