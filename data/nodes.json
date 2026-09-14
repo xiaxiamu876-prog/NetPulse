@@ -26,12 +26,12 @@
   "max_mbps": 100,
   "relay_version": "relay/0.1.0-dev+sha.7f0456d",
   "registered_at": "2026-09-13T11:12:18Z",
-  "last_heartbeat": "2026-09-14T01:50:49Z",
+  "last_heartbeat": "2026-09-14T11:01:19Z",
   "source": "OpenRung",
   "type": "relay",
   "security_score": 95,
   "anti_censorship": "极强",
-  "last_seen": "2026-09-14T01:50:52Z"
+  "last_seen": "2026-09-14T11:01:41Z"
  },
  {
   "id": "relay_c2ffedc3fef429b3920080b44a9f8e44",
@@ -60,12 +60,12 @@
   "max_mbps": 100,
   "relay_version": "relay/0.1.0-dev+sha.68800f9",
   "registered_at": "2026-09-13T11:13:03Z",
-  "last_heartbeat": "2026-09-14T01:50:33Z",
+  "last_heartbeat": "2026-09-14T11:01:33Z",
   "source": "OpenRung",
   "type": "relay",
   "security_score": 95,
   "anti_censorship": "极强",
-  "last_seen": "2026-09-14T01:50:52Z",
+  "last_seen": "2026-09-14T11:01:41Z",
   "wss_fronts": [
    {
     "id": "fond-lizard-bunny-a",
@@ -101,12 +101,12 @@
   "max_mbps": 100,
   "relay_version": "relay/0.1.0-dev+sha.cdb184f",
   "registered_at": "2026-09-13T20:00:48Z",
-  "last_heartbeat": "2026-09-14T01:50:48Z",
+  "last_heartbeat": "2026-09-14T11:01:18Z",
   "source": "OpenRung",
   "type": "relay",
   "security_score": 95,
   "anti_censorship": "极强",
-  "last_seen": "2026-09-14T01:50:52Z"
+  "last_seen": "2026-09-14T11:01:41Z"
  },
  {
   "id": "relay_c1189b375e0010c982da8428bdc9a307",
@@ -135,12 +135,12 @@
   "max_mbps": 100,
   "relay_version": "relay/0.1.0-dev+sha.7f0456d",
   "registered_at": "2026-09-13T11:12:14Z",
-  "last_heartbeat": "2026-09-14T01:50:44Z",
+  "last_heartbeat": "2026-09-14T11:01:14Z",
   "source": "OpenRung",
   "type": "relay",
   "security_score": 95,
   "anti_censorship": "极强",
-  "last_seen": "2026-09-14T01:50:52Z"
+  "last_seen": "2026-09-14T11:01:41Z"
  },
  {
   "id": "relay_4add35f83f7b64c420d6fbc60f516b70",
@@ -169,12 +169,12 @@
   "max_mbps": 100,
   "relay_version": "relay/0.1.0-dev+sha.f6839c1",
   "registered_at": "2026-08-28T07:11:23Z",
-  "last_heartbeat": "2026-09-14T01:50:23Z",
+  "last_heartbeat": "2026-09-14T11:01:23Z",
   "source": "OpenRung",
   "type": "relay",
   "security_score": 95,
   "anti_censorship": "极强",
-  "last_seen": "2026-09-14T01:50:52Z",
+  "last_seen": "2026-09-14T11:01:41Z",
   "wss_fronts": [
    {
     "id": "dapper-marmot-bunny-a",
