@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-15 02:00:24 UTC
+# 生成时间: 2026-09-15 10:31:58 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,6 +9,34 @@ log-level: info
 ipv6: false
 
 proxies:
+  - name: "NetPulse-cosmic-cobra"
+    type: vless
+    server: 2600:3c18::2000:4bff:fe8b:f4a0
+    port: 443
+    uuid: 0b4cd2bf-35c8-41b0-a8bd-9b81764b1ac2
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: a5qUkOnp6bBKEM_BIV-INHUxGSsrvquh9AdTTNdc5xQ
+      short-id: 09947d75a3017dd8
+  - name: "NetPulse-dapper-marmot"
+    type: vless
+    server: 2600:3c15::2000:a9ff:feca:30e7
+    port: 443
+    uuid: 214c3500-8029-485d-b9f8-56da80bc600b
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: XVfnRcNXcHX_Vp4U-XiR486O5JsGwjTnB-3rVEPJuTE
+      short-id: f414d1f8d963a5f3
   - name: "NetPulse-vivid-clover"
     type: vless
     server: 2406:da12:b80:f00:7aa2:7cca:ad4:49a0
@@ -23,11 +51,11 @@ proxies:
     reality-opts:
       public-key: AAsvccwqRDgIiRp1jP0gZ0NKxgYVWELoZcVTqkoAf1U
       short-id: fbffd47af24bd82a
-  - name: "NetPulse-seoul-foundation-2"
+  - name: "NetPulse-golden-badger"
     type: vless
-    server: 43.202.52.224
+    server: 2.28.71.210
     port: 443
-    uuid: db869f82-b313-4817-8916-8803554ede1a
+    uuid: 3196e85c-ce7b-4dab-a01d-f41eb2547081
     network: tcp
     tls: true
     udp: true
@@ -35,13 +63,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: h_FEX4SlBPtuqPHSrJVA1xJOHV_uBw__OsLxoezjPR4
-      short-id: 6a7b4e97c94a623a
-  - name: "NetPulse-suave-mantis"
+      public-key: xwQbCr5ItlNfQUfwQTeDi7rRkGVZjfYxw30_AZLQ7Qc
+      short-id: 19d41f00dcfd79a3
+  - name: "NetPulse-sunny-ibex"
     type: vless
-    server: 179.255.146.196
+    server: 2.29.39.144
     port: 443
-    uuid: c9e6d133-ba37-4b25-afb0-1263f3590072
+    uuid: c33dbcee-4a1e-4640-8a02-0d80e430b7d5
     network: tcp
     tls: true
     udp: true
@@ -49,46 +77,18 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: p0ttjesRpRxP896nHQcrTf4lb7mIiOwUQG7BgbrJ6Ho
-      short-id: b2d1fb62c8c54ff5
-  - name: "NetPulse-fond-lizard"
-    type: vless
-    server: 54.180.202.222
-    port: 443
-    uuid: 22ffa2ae-d910-4ac3-83a2-58cac876179c
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: lmA55_21PewF2VUXpmFV_p7p3cQyk3SUoTrx_seHPx8
-      short-id: e288787ea16ce6aa
-  - name: "NetPulse-merry-falcon"
-    type: vless
-    server: 2600:3c18::2000:70ff:fec1:c4c1
-    port: 443
-    uuid: 338025d6-6dcc-4a24-8824-b918000c0ceb
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: AC4psQKQU1DSpsxAVkgrTHZ5aAP03VyrgosA6g992W4
-      short-id: eaba29221bfb0497
+      public-key: blah3hVIXg6sTzykqdd7AhbHCnqIIDgolsmyuxTRJhU
+      short-id: 51bb5b398915766b
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
+      - "NetPulse-cosmic-cobra"
+      - "NetPulse-dapper-marmot"
       - "NetPulse-vivid-clover"
-      - "NetPulse-seoul-foundation-2"
-      - "NetPulse-suave-mantis"
-      - "NetPulse-fond-lizard"
-      - "NetPulse-merry-falcon"
+      - "NetPulse-golden-badger"
+      - "NetPulse-sunny-ibex"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
+      - "NetPulse-cosmic-cobra"
+      - "NetPulse-dapper-marmot"
       - "NetPulse-vivid-clover"
-      - "NetPulse-seoul-foundation-2"
-      - "NetPulse-suave-mantis"
-      - "NetPulse-fond-lizard"
-      - "NetPulse-merry-falcon"
+      - "NetPulse-golden-badger"
+      - "NetPulse-sunny-ibex"
       - "🚀 自动选择"
   - name: PROXY
     type: select
