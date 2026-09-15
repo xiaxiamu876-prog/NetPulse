@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-15 15:45:19 UTC
+# 生成时间: 2026-09-15 20:29:56 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-dapper-marmot"
+  - name: "NetPulse-golden-badger"
     type: vless
-    server: 2600:3c15::2000:a9ff:feca:30e7
+    server: 2.28.71.210
     port: 443
-    uuid: 214c3500-8029-485d-b9f8-56da80bc600b
+    uuid: 3196e85c-ce7b-4dab-a01d-f41eb2547081
     network: tcp
     tls: true
     udp: true
@@ -21,22 +21,8 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: XVfnRcNXcHX_Vp4U-XiR486O5JsGwjTnB-3rVEPJuTE
-      short-id: f414d1f8d963a5f3
-  - name: "NetPulse-merry-falcon"
-    type: vless
-    server: 2600:3c18::2000:70ff:fec1:c4c1
-    port: 443
-    uuid: 338025d6-6dcc-4a24-8824-b918000c0ceb
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: AC4psQKQU1DSpsxAVkgrTHZ5aAP03VyrgosA6g992W4
-      short-id: eaba29221bfb0497
+      public-key: xwQbCr5ItlNfQUfwQTeDi7rRkGVZjfYxw30_AZLQ7Qc
+      short-id: 19d41f00dcfd79a3
   - name: "NetPulse-cosmic-cobra"
     type: vless
     server: 2600:3c18::2000:4bff:fe8b:f4a0
@@ -65,11 +51,11 @@ proxies:
     reality-opts:
       public-key: AAsvccwqRDgIiRp1jP0gZ0NKxgYVWELoZcVTqkoAf1U
       short-id: fbffd47af24bd82a
-  - name: "NetPulse-golden-badger"
+  - name: "NetPulse-suave-mantis"
     type: vless
-    server: 2.28.71.210
+    server: 179.255.146.196
     port: 443
-    uuid: 3196e85c-ce7b-4dab-a01d-f41eb2547081
+    uuid: c9e6d133-ba37-4b25-afb0-1263f3590072
     network: tcp
     tls: true
     udp: true
@@ -77,18 +63,32 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: xwQbCr5ItlNfQUfwQTeDi7rRkGVZjfYxw30_AZLQ7Qc
-      short-id: 19d41f00dcfd79a3
+      public-key: p0ttjesRpRxP896nHQcrTf4lb7mIiOwUQG7BgbrJ6Ho
+      short-id: b2d1fb62c8c54ff5
+  - name: "NetPulse-merry-falcon"
+    type: vless
+    server: 2600:3c18::2000:70ff:fec1:c4c1
+    port: 443
+    uuid: 338025d6-6dcc-4a24-8824-b918000c0ceb
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: AC4psQKQU1DSpsxAVkgrTHZ5aAP03VyrgosA6g992W4
+      short-id: eaba29221bfb0497
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-dapper-marmot"
-      - "NetPulse-merry-falcon"
+      - "NetPulse-golden-badger"
       - "NetPulse-cosmic-cobra"
       - "NetPulse-vivid-clover"
-      - "NetPulse-golden-badger"
+      - "NetPulse-suave-mantis"
+      - "NetPulse-merry-falcon"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-dapper-marmot"
-      - "NetPulse-merry-falcon"
+      - "NetPulse-golden-badger"
       - "NetPulse-cosmic-cobra"
       - "NetPulse-vivid-clover"
-      - "NetPulse-golden-badger"
+      - "NetPulse-suave-mantis"
+      - "NetPulse-merry-falcon"
       - "🚀 自动选择"
   - name: PROXY
     type: select
