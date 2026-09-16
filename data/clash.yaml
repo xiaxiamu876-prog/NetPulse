@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-16 01:51:15 UTC
+# 生成时间: 2026-09-16 10:21:07 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,34 +9,6 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-balmy-summit"
-    type: vless
-    server: 2a01:7e03::2000:d3ff:fe54:defc
-    port: 443
-    uuid: 28b517ec-24a0-41c4-a737-34fcc9aa54e8
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: fKDztH1zFvktUb9mbu0zRBB3J56DTSd6R2njLU1iy24
-      short-id: 20305d96fdaf2242
-  - name: "NetPulse-cosmic-cobra"
-    type: vless
-    server: 2600:3c18::2000:4bff:fe8b:f4a0
-    port: 443
-    uuid: 0b4cd2bf-35c8-41b0-a8bd-9b81764b1ac2
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: a5qUkOnp6bBKEM_BIV-INHUxGSsrvquh9AdTTNdc5xQ
-      short-id: 09947d75a3017dd8
   - name: "NetPulse-modest-tapir"
     type: vless
     server: 2600:3c18::2000:53ff:fe44:cb0e
@@ -51,11 +23,11 @@ proxies:
     reality-opts:
       public-key: zVGux4oc3f4kSKV4MRWgy6XfzZIhJ9ArKZfs1u8QCTs
       short-id: d2c1548da322745e
-  - name: "NetPulse-vivid-clover"
+  - name: "NetPulse-shiny-gecko"
     type: vless
-    server: 2406:da12:b80:f00:7aa2:7cca:ad4:49a0
+    server: 2600:3c16::2000:16ff:fe4b:8eff
     port: 443
-    uuid: cae1cddc-b08c-481f-aaf6-00ea5d2de231
+    uuid: cbc49eed-f5af-48a8-97f5-d7bfc6944eff
     network: tcp
     tls: true
     udp: true
@@ -63,13 +35,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: AAsvccwqRDgIiRp1jP0gZ0NKxgYVWELoZcVTqkoAf1U
-      short-id: fbffd47af24bd82a
-  - name: "NetPulse-sunny-ibex"
+      public-key: 2qQsoihQwHwkeM1dLZCVYRpGcLDkUK5sYbZK1zyYPm8
+      short-id: 1e1fdb8523f6b620
+  - name: "NetPulse-merry-falcon"
     type: vless
-    server: 2.29.39.144
+    server: 2600:3c18::2000:70ff:fec1:c4c1
     port: 443
-    uuid: c33dbcee-4a1e-4640-8a02-0d80e430b7d5
+    uuid: 338025d6-6dcc-4a24-8824-b918000c0ceb
     network: tcp
     tls: true
     udp: true
@@ -77,18 +49,46 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: blah3hVIXg6sTzykqdd7AhbHCnqIIDgolsmyuxTRJhU
-      short-id: 51bb5b398915766b
+      public-key: AC4psQKQU1DSpsxAVkgrTHZ5aAP03VyrgosA6g992W4
+      short-id: eaba29221bfb0497
+  - name: "NetPulse-balmy-summit"
+    type: vless
+    server: 2a01:7e03::2000:d3ff:fe54:defc
+    port: 443
+    uuid: 28b517ec-24a0-41c4-a737-34fcc9aa54e8
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: fKDztH1zFvktUb9mbu0zRBB3J56DTSd6R2njLU1iy24
+      short-id: 20305d96fdaf2242
+  - name: "NetPulse-golden-badger"
+    type: vless
+    server: 2.28.71.210
+    port: 443
+    uuid: 3196e85c-ce7b-4dab-a01d-f41eb2547081
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: xwQbCr5ItlNfQUfwQTeDi7rRkGVZjfYxw30_AZLQ7Qc
+      short-id: 19d41f00dcfd79a3
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-balmy-summit"
-      - "NetPulse-cosmic-cobra"
       - "NetPulse-modest-tapir"
-      - "NetPulse-vivid-clover"
-      - "NetPulse-sunny-ibex"
+      - "NetPulse-shiny-gecko"
+      - "NetPulse-merry-falcon"
+      - "NetPulse-balmy-summit"
+      - "NetPulse-golden-badger"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-balmy-summit"
-      - "NetPulse-cosmic-cobra"
       - "NetPulse-modest-tapir"
-      - "NetPulse-vivid-clover"
-      - "NetPulse-sunny-ibex"
+      - "NetPulse-shiny-gecko"
+      - "NetPulse-merry-falcon"
+      - "NetPulse-balmy-summit"
+      - "NetPulse-golden-badger"
       - "🚀 自动选择"
   - name: PROXY
     type: select
