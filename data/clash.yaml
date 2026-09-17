@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-16 20:29:47 UTC
+# 生成时间: 2026-09-17 01:55:01 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-happy-meerkat"
+  - name: "NetPulse-lively-osprey"
     type: vless
-    server: 13.196.120.83
+    server: 54.117.14.211
     port: 443
-    uuid: a1b5aa40-775a-4d31-9c3f-3119a5f99747
+    uuid: 5126cc16-49b2-40e1-b711-e4091bab0e88
     network: tcp
     tls: true
     udp: true
@@ -21,8 +21,8 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: TaK58Td8-Lf2FksPfP-bOEMBrM-2VqCBbv_-BayHyE8
-      short-id: b06402e11b281b0f
+      public-key: P6iW41BL43OduseauQS6ss1GVkG7k_RUBDELpWKFAnk
+      short-id: 8d95059c470c5897
   - name: "NetPulse-frosty-starling"
     type: vless
     server: 3.36.33.210
@@ -51,11 +51,11 @@ proxies:
     reality-opts:
       public-key: AC4psQKQU1DSpsxAVkgrTHZ5aAP03VyrgosA6g992W4
       short-id: eaba29221bfb0497
-  - name: "NetPulse-feisty-sparrow"
+  - name: "NetPulse-hearty-ocelot"
     type: vless
-    server: 52.199.46.244
+    server: 3.113.77.25
     port: 443
-    uuid: 4db4c59a-74ed-4654-b0fb-66f44a9c3229
+    uuid: 8605c1df-1db7-4e8f-8688-0e305258656f
     network: tcp
     tls: true
     udp: true
@@ -63,8 +63,8 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: 3U8BDGZD3J20aEIvCDLslQskqMZgsRdsAITsXWMtiH8
-      short-id: 76c6b98b60aafcc9
+      public-key: vrL_OVeklUJQMRuu31-wCC6z2a3HgB4cWhsI1GfFUSc
+      short-id: 7c0fa1ccfe37d65e
   - name: "NetPulse-sunny-ibex"
     type: vless
     server: 2.29.39.144
@@ -84,10 +84,10 @@ proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-happy-meerkat"
+      - "NetPulse-lively-osprey"
       - "NetPulse-frosty-starling"
       - "NetPulse-merry-falcon"
-      - "NetPulse-feisty-sparrow"
+      - "NetPulse-hearty-ocelot"
       - "NetPulse-sunny-ibex"
     url: http://www.gstatic.com/generate_204
     interval: 300
@@ -96,10 +96,10 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-happy-meerkat"
+      - "NetPulse-lively-osprey"
       - "NetPulse-frosty-starling"
       - "NetPulse-merry-falcon"
-      - "NetPulse-feisty-sparrow"
+      - "NetPulse-hearty-ocelot"
       - "NetPulse-sunny-ibex"
       - "🚀 自动选择"
   - name: PROXY
