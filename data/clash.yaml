@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-21 01:50:28 UTC
+# 生成时间: 2026-09-21 11:11:22 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,67 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-cosmic-cobra"
-    type: vless
-    server: 2600:3c18::2000:4bff:fe8b:f4a0
-    port: 443
-    uuid: 3fee2a84-07bd-46a5-9448-4f9ccbf252a0
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: TWVPsbO6_-7wOYr4APvW2jCnd6tOnRPVMl8feQX59E8
-      short-id: 7b475840c70feb29
-  - name: "NetPulse-dapper-marmot"
-    type: vless
-    server: 2600:3c15::2000:a9ff:feca:30e7
-    port: 443
-    uuid: f711a4b5-bb97-45e7-96f8-96f51fd5aa54
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: xHTVZgbjoZpuqj30Rpd2IWaiBUasbKRlsszrqs53fC8
-      short-id: 6c23e5d1d409dc15
-  - name: "NetPulse-getdiggingbomby"
-    type: vless
-    server: 134.236.55.189
-    port: 443
-    uuid: 8e2c4b30-b366-4a10-9d76-33aea49295a2
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: 2hMOzHB4-MORYLBSPfRoFAq_lr2zxsGnz1H3NBB6XmM
-      short-id: 7a235868cfd81ea2
-  - name: "NetPulse-nimble-comet"
-    type: vless
-    server: 167.233.174.156
-    port: 443
-    uuid: 3e559d95-bfb3-4be7-b6b6-162bcb316eae
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: nzRiF0XqSfO_uONTidz3ZuGUZMhHlZ4xwX9pr-iKmC4
-      short-id: c488033a189e314b
   - name: "NetPulse-suave-mantis"
     type: vless
     server: 179.255.146.196
     port: 443
-    uuid: ba50f99d-3f05-4767-8558-d070736d90ba
+    uuid: e1778206-d35d-4821-980f-ca518d7a5c25
     network: tcp
     tls: true
     udp: true
@@ -79,16 +23,72 @@ proxies:
     reality-opts:
       public-key: Rl5ZOtDV0ERwxLX2JO_NWAWaZbd8ARqoRUVxRXjinkM
       short-id: d985728eec42bef0
+  - name: "NetPulse-breezy-yak"
+    type: vless
+    server: 2600:3c08::2000:03ff:fe15:8fa3
+    port: 443
+    uuid: 0709c318-05f8-4d34-8977-049604a0c8cc
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: zeM9yOcNK7LNgyhYMBkxZIivb7z-kdNmrZx4I8a-IkY
+      short-id: e97c83bdaff7ea61
+  - name: "NetPulse-getdiggingbomby"
+    type: vless
+    server: 134.236.55.189
+    port: 443
+    uuid: 21310478-74f5-4b0b-a7df-fb730ac785ea
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: 2hMOzHB4-MORYLBSPfRoFAq_lr2zxsGnz1H3NBB6XmM
+      short-id: 7a235868cfd81ea2
+  - name: "NetPulse-dapper-marmot"
+    type: vless
+    server: 2600:3c15::2000:a9ff:feca:30e7
+    port: 443
+    uuid: 6527793b-815e-46a3-a31b-8500e7d1139c
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: xHTVZgbjoZpuqj30Rpd2IWaiBUasbKRlsszrqs53fC8
+      short-id: 6c23e5d1d409dc15
+  - name: "NetPulse-nimble-comet"
+    type: vless
+    server: 167.233.174.156
+    port: 443
+    uuid: 5ac5b0e9-6651-4e85-b9bd-3a8130d772f8
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: nzRiF0XqSfO_uONTidz3ZuGUZMhHlZ4xwX9pr-iKmC4
+      short-id: c488033a189e314b
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-cosmic-cobra"
-      - "NetPulse-dapper-marmot"
-      - "NetPulse-getdiggingbomby"
-      - "NetPulse-nimble-comet"
       - "NetPulse-suave-mantis"
+      - "NetPulse-breezy-yak"
+      - "NetPulse-getdiggingbomby"
+      - "NetPulse-dapper-marmot"
+      - "NetPulse-nimble-comet"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-cosmic-cobra"
-      - "NetPulse-dapper-marmot"
-      - "NetPulse-getdiggingbomby"
-      - "NetPulse-nimble-comet"
       - "NetPulse-suave-mantis"
+      - "NetPulse-breezy-yak"
+      - "NetPulse-getdiggingbomby"
+      - "NetPulse-dapper-marmot"
+      - "NetPulse-nimble-comet"
       - "🚀 自动选择"
   - name: PROXY
     type: select
