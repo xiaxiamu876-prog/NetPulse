@@ -4,12 +4,12 @@
   "foundation": 5
  },
  "by_country": {
-  "JP": 2,
-  "US": 1,
-  "IN": 1,
-  "DE": 1
+  "JP": 1,
+  "US": 2,
+  "DE": 1,
+  "IN": 1
  },
  "protocol": "VLESS + REALITY + Vision",
- "updated_at": "2026-09-21T21:16:29Z",
+ "updated_at": "2026-09-22T01:59:20Z",
  "source": "OpenRung Volunteer Relay Network"
 }
