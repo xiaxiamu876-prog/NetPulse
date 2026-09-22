@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-22 15:47:31 UTC
+# 生成时间: 2026-09-22 20:31:46 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,39 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-breezy-yak"
-    type: vless
-    server: 2600:3c08::2000:03ff:fe15:8fa3
-    port: 443
-    uuid: 722bb755-0e17-4a95-aa1e-85427bc0847b
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: zeM9yOcNK7LNgyhYMBkxZIivb7z-kdNmrZx4I8a-IkY
-      short-id: e97c83bdaff7ea61
-  - name: "NetPulse-shiny-gecko"
-    type: vless
-    server: 2600:3c16::2000:16ff:fe4b:8eff
-    port: 443
-    uuid: 9376aac7-ff78-4301-867a-63a81d40e218
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: Oa5Aa4nq-n6-Bml0OxAdqyBSf7RjjZ_KMr_Rf-hySHo
-      short-id: d1ce618935d2b518
   - name: "NetPulse-merry-falcon"
     type: vless
     server: 2600:3c18::2000:70ff:fec1:c4c1
     port: 443
-    uuid: 259f8e49-d502-4a3b-9f78-68f0b4ed6729
+    uuid: 6ce66ba7-53cc-4782-9a91-79211203327d
     network: tcp
     tls: true
     udp: true
@@ -51,25 +23,11 @@ proxies:
     reality-opts:
       public-key: 7Fl9VW3nji72H-TVz0QRDrZnD58uo7LS3SWSvxseh1Q
       short-id: 6c2c0d2958c4ce2a
-  - name: "NetPulse-modest-tapir"
-    type: vless
-    server: 2600:3c18::2000:53ff:fe44:cb0e
-    port: 443
-    uuid: 0baf7072-f105-41dc-b592-f71539a33dd9
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: pSiVdUezJczc4tXIp3A7YDN00bSXb-95QSi_YAXzlGw
-      short-id: 944822ac98f1002e
   - name: "NetPulse-nimble-comet"
     type: vless
     server: 167.233.174.156
     port: 443
-    uuid: 057baa61-87b6-4709-bad4-8323b7c84c62
+    uuid: 6fe3c045-3ee3-49ad-94a2-f58f92f233b9
     network: tcp
     tls: true
     udp: true
@@ -79,16 +37,58 @@ proxies:
     reality-opts:
       public-key: nzRiF0XqSfO_uONTidz3ZuGUZMhHlZ4xwX9pr-iKmC4
       short-id: c488033a189e314b
+  - name: "NetPulse-dapper-marmot"
+    type: vless
+    server: 2600:3c15::2000:a9ff:feca:30e7
+    port: 443
+    uuid: de75113f-432c-4512-a5cc-46b515e0f9f0
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: xHTVZgbjoZpuqj30Rpd2IWaiBUasbKRlsszrqs53fC8
+      short-id: 6c23e5d1d409dc15
+  - name: "NetPulse-modest-tapir"
+    type: vless
+    server: 2600:3c18::2000:53ff:fe44:cb0e
+    port: 443
+    uuid: a2f7009f-c05d-400f-9f99-120fb125f776
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: pSiVdUezJczc4tXIp3A7YDN00bSXb-95QSi_YAXzlGw
+      short-id: 944822ac98f1002e
+  - name: "NetPulse-shiny-gecko"
+    type: vless
+    server: 2600:3c16::2000:16ff:fe4b:8eff
+    port: 443
+    uuid: dae1c59e-0ed7-4614-ad6a-5bf73bb04852
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: Oa5Aa4nq-n6-Bml0OxAdqyBSf7RjjZ_KMr_Rf-hySHo
+      short-id: d1ce618935d2b518
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-breezy-yak"
-      - "NetPulse-shiny-gecko"
       - "NetPulse-merry-falcon"
-      - "NetPulse-modest-tapir"
       - "NetPulse-nimble-comet"
+      - "NetPulse-dapper-marmot"
+      - "NetPulse-modest-tapir"
+      - "NetPulse-shiny-gecko"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-breezy-yak"
-      - "NetPulse-shiny-gecko"
       - "NetPulse-merry-falcon"
-      - "NetPulse-modest-tapir"
       - "NetPulse-nimble-comet"
+      - "NetPulse-dapper-marmot"
+      - "NetPulse-modest-tapir"
+      - "NetPulse-shiny-gecko"
       - "🚀 自动选择"
   - name: PROXY
     type: select
