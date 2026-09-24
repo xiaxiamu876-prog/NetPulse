@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-09-23 20:44:28 UTC
+# 生成时间: 2026-09-24 01:45:49 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-merry-falcon"
+  - name: "NetPulse-modest-tapir"
     type: vless
-    server: 2600:3c18::2000:70ff:fec1:c4c1
+    server: 2600:3c18::2000:53ff:fe44:cb0e
     port: 443
-    uuid: 77dcc8cd-12c4-4ecb-8a6b-ba3d74942b8c
+    uuid: 0e63505f-dee4-479e-adbc-14ef55577cc9
     network: tcp
     tls: true
     udp: true
@@ -21,13 +21,27 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: 7Fl9VW3nji72H-TVz0QRDrZnD58uo7LS3SWSvxseh1Q
-      short-id: 6c2c0d2958c4ce2a
+      public-key: pSiVdUezJczc4tXIp3A7YDN00bSXb-95QSi_YAXzlGw
+      short-id: 944822ac98f1002e
+  - name: "NetPulse-balmy-summit"
+    type: vless
+    server: 2a01:7e03::2000:d3ff:fe54:defc
+    port: 443
+    uuid: f490e085-e41c-48f4-aee4-4bb77cea8950
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: rVNBG04VCfei6S63yos8GwrdLWnUe7Rjwzl-ZaN4Ig0
+      short-id: d2a582ea258e03fe
   - name: "NetPulse-cosmic-cobra"
     type: vless
     server: 2600:3c18::2000:4bff:fe8b:f4a0
     port: 443
-    uuid: 673c2636-4f82-4f81-8233-bf852c0e23c3
+    uuid: e4d3f340-6a09-48a0-b429-cf6ead258c91
     network: tcp
     tls: true
     udp: true
@@ -37,25 +51,11 @@ proxies:
     reality-opts:
       public-key: TWVPsbO6_-7wOYr4APvW2jCnd6tOnRPVMl8feQX59E8
       short-id: 7b475840c70feb29
-  - name: "NetPulse-breezy-yak"
-    type: vless
-    server: 2600:3c08::2000:03ff:fe15:8fa3
-    port: 443
-    uuid: 28feaa97-1fbd-4571-a340-2fa7439f7726
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: zeM9yOcNK7LNgyhYMBkxZIivb7z-kdNmrZx4I8a-IkY
-      short-id: e97c83bdaff7ea61
   - name: "NetPulse-dapper-marmot"
     type: vless
     server: 2600:3c15::2000:a9ff:feca:30e7
     port: 443
-    uuid: 454b38d1-c59e-45cd-97d6-39cd4b64ab71
+    uuid: 32df2dec-6b62-4894-a80e-f675592a282e
     network: tcp
     tls: true
     udp: true
@@ -69,7 +69,7 @@ proxies:
     type: vless
     server: 167.233.174.156
     port: 443
-    uuid: 070672c1-138f-47e6-a57f-20e441265d3d
+    uuid: c843d7ba-d9c9-446e-93fe-7c3d0cf56072
     network: tcp
     tls: true
     udp: true
@@ -84,9 +84,9 @@ proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-merry-falcon"
+      - "NetPulse-modest-tapir"
+      - "NetPulse-balmy-summit"
       - "NetPulse-cosmic-cobra"
-      - "NetPulse-breezy-yak"
       - "NetPulse-dapper-marmot"
       - "NetPulse-nimble-comet"
     url: http://www.gstatic.com/generate_204
@@ -96,9 +96,9 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-merry-falcon"
+      - "NetPulse-modest-tapir"
+      - "NetPulse-balmy-summit"
       - "NetPulse-cosmic-cobra"
-      - "NetPulse-breezy-yak"
       - "NetPulse-dapper-marmot"
       - "NetPulse-nimble-comet"
       - "🚀 自动选择"
