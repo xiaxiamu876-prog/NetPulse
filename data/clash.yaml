@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-10-09 03:13:43 UTC
+# 生成时间: 2026-10-09 12:09:02 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,25 @@ log-level: info
 ipv6: false
 
 proxies:
+  - name: "NetPulse-happy-meerkat"
+    type: vless
+    server: 13.196.120.83
+    port: 443
+    uuid: 97d4b1b6-038a-4f2d-add0-7b815005a8ac
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: JdCDD3A0Ba2Z34kiOKrJtkQ-ThtV3hpGwIKyZTPYZl8
+      short-id: d1302493d84a52f2
   - name: "NetPulse-shiny-crane"
     type: vless
     server: 2.28.70.17
     port: 443
-    uuid: 3aa4a217-35e7-494a-a35b-e925233b4367
+    uuid: 62ef9325-d35d-4e49-a016-cf5d482cbfd6
     network: tcp
     tls: true
     udp: true
@@ -23,53 +37,11 @@ proxies:
     reality-opts:
       public-key: dGrBn5Z4aZai_UoNE-p_iLsaDivDfhT6ndr35P9h23I
       short-id: 94d5faf1db932374
-  - name: "NetPulse-minty-crane"
-    type: vless
-    server: 2605:52c0:3:167:be24:11ff:fe92:200d
-    port: 443
-    uuid: 8c25015b-96f0-4cd7-8508-570ece11958e
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: f9usumgQdZIsuLTALNFkASZd3k0iaWx8SPJq9TcNLAo
-      short-id: 43a3181b72883a6d
-  - name: "NetPulse-nimble-comet"
-    type: vless
-    server: 2.28.194.230
-    port: 443
-    uuid: 95fea64f-8780-41b5-9667-990079f22869
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: wN-CQ4kKGej4iEol5DvfH3kIA54u6Oupp3uOMoXgh2Q
-      short-id: eb14afe0fc97728e
-  - name: "NetPulse-suave-mantis"
-    type: vless
-    server: 179.255.146.196
-    port: 443
-    uuid: f66b8a4a-5d20-44f8-9d19-72f368607a6b
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: m6-9gpx60TIPwNZfhOGwPAAP5LQ8gEdIQmDHvE9ON2c
-      short-id: f13051eac84f430c
   - name: "NetPulse-hearty-prairie"
     type: vless
     server: 13.239.167.39
     port: 443
-    uuid: ad114207-6180-4f24-b377-922380413632
+    uuid: 772d0c57-ce58-400d-9cfc-6253538e8ed1
     network: tcp
     tls: true
     udp: true
@@ -79,16 +51,44 @@ proxies:
     reality-opts:
       public-key: 4VSsUjw3L28l7Ie8nffeFVKPGkr0Gqc1HNyhDgyvW1o
       short-id: 552766aceedb2954
+  - name: "NetPulse-nimble-comet"
+    type: vless
+    server: 2.28.194.230
+    port: 443
+    uuid: 1be76dc9-8db6-4cea-a7e2-779d26227128
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: wN-CQ4kKGej4iEol5DvfH3kIA54u6Oupp3uOMoXgh2Q
+      short-id: eb14afe0fc97728e
+  - name: "NetPulse-vivid-clover"
+    type: vless
+    server: 2406:da12:b80:f00:7aa2:7cca:ad4:49a0
+    port: 443
+    uuid: cd8a634d-be46-4cb4-9100-49af8e2a4380
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: yKtFXmH3nr7rVZCElh7E2Qqby202yI9PAJFRhuH1fy4
+      short-id: 0f828b868a3b4eee
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
+      - "NetPulse-happy-meerkat"
       - "NetPulse-shiny-crane"
-      - "NetPulse-minty-crane"
-      - "NetPulse-nimble-comet"
-      - "NetPulse-suave-mantis"
       - "NetPulse-hearty-prairie"
+      - "NetPulse-nimble-comet"
+      - "NetPulse-vivid-clover"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
+      - "NetPulse-happy-meerkat"
       - "NetPulse-shiny-crane"
-      - "NetPulse-minty-crane"
-      - "NetPulse-nimble-comet"
-      - "NetPulse-suave-mantis"
       - "NetPulse-hearty-prairie"
+      - "NetPulse-nimble-comet"
+      - "NetPulse-vivid-clover"
       - "🚀 自动选择"
   - name: PROXY
     type: select
