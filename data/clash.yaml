@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-10-17 01:43:14 UTC
+# 生成时间: 2026-10-17 09:45:58 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -13,7 +13,7 @@ proxies:
     type: vless
     server: 2.28.194.230
     port: 443
-    uuid: 28e4ddf7-e972-494d-b7fc-a1d4939ecf3f
+    uuid: 6f5a68b1-052c-4cd1-9520-d219122878e8
     network: tcp
     tls: true
     udp: true
@@ -27,7 +27,7 @@ proxies:
     type: vless
     server: 3.37.133.87
     port: 443
-    uuid: 9a19080e-e5c0-4fe8-bc91-1bec76131893
+    uuid: ef71234b-ca60-4090-8a34-a773ef31d775
     network: tcp
     tls: true
     udp: true
@@ -41,7 +41,7 @@ proxies:
     type: vless
     server: 2406:da12:b80:f00:7aa2:7cca:ad4:49a0
     port: 443
-    uuid: fcc52e54-eefd-4487-9784-9a4a81828efa
+    uuid: 9a6b6a63-9984-438d-9e37-702ea42bacc1
     network: tcp
     tls: true
     udp: true
@@ -55,7 +55,7 @@ proxies:
     type: vless
     server: 54.64.138.128
     port: 443
-    uuid: 08adec10-6334-4de1-96ff-3271768a823f
+    uuid: 6726fe05-1779-45cc-8b59-e51862c66ab0
     network: tcp
     tls: true
     udp: true
@@ -65,11 +65,11 @@ proxies:
     reality-opts:
       public-key: A1fQ6VpXMrWcSVOWYW0gbNmJSdiMVKsPwgwRgTXZFQI
       short-id: 63b513d5e5a23579
-  - name: "NetPulse-happy-meerkat"
+  - name: "NetPulse-lively-osprey"
     type: vless
-    server: 13.196.120.83
+    server: 54.117.14.211
     port: 443
-    uuid: dd8fde14-c8ef-4e22-89c9-cd8558cae14e
+    uuid: cf6503b8-bad8-48ee-9dc9-92461e3c2a9a
     network: tcp
     tls: true
     udp: true
@@ -77,8 +77,8 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: rv35pEOVWUobEBSbStIQ8nHWanZ-PsVBZGqcha7iAiM
-      short-id: d472ea6962503e7b
+      public-key: zWJxEU23Da7thdMzJU6jZ84O3ax70Jg2cxEVug6QUQE
+      short-id: a5110fbb38fdfb62
 
 proxy-groups:
   - name: "🚀 自动选择"
@@ -88,7 +88,7 @@ proxy-groups:
       - "NetPulse-fond-lizard"
       - "NetPulse-vivid-clover"
       - "NetPulse-hardy-lantern"
-      - "NetPulse-happy-meerkat"
+      - "NetPulse-lively-osprey"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -100,7 +100,7 @@ proxy-groups:
       - "NetPulse-fond-lizard"
       - "NetPulse-vivid-clover"
       - "NetPulse-hardy-lantern"
-      - "NetPulse-happy-meerkat"
+      - "NetPulse-lively-osprey"
       - "🚀 自动选择"
   - name: PROXY
     type: select
