@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-10-20 15:52:49 UTC
+# 生成时间: 2026-10-20 20:56:06 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-nimble-comet"
+  - name: "NetPulse-cosmic-pelican"
     type: vless
-    server: 2.28.194.230
+    server: 3.25.216.38
     port: 443
-    uuid: 035a526c-9150-4293-902d-1848f89c517d
+    uuid: 1aa21d30-df13-4941-b85f-257779d0a2c3
     network: tcp
     tls: true
     udp: true
@@ -21,27 +21,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: LK_5ol3189d1OTXVbQLZ4XE0kT5PwY9X8YknBMCx60k
-      short-id: eb807238c2e3102b
-  - name: "NetPulse-lively-osprey"
-    type: vless
-    server: 54.117.14.211
-    port: 443
-    uuid: d3954c13-928f-41f1-82dd-5996f8ae94d0
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: _h6PG_iHyfjm6acMNa3fQy-4jamn_4hnTBhLR715RW8
-      short-id: 93ec0efc59d06489
+      public-key: 493Uab3KLeQRjd7iTXRYva-mAABOel_BY7FQ8GP9plg
+      short-id: 8f5e5552a0b3244d
   - name: "NetPulse-crystal-chipmunk"
     type: vless
     server: 216.183.223.202
     port: 4443
-    uuid: f6830c81-2510-4203-b26b-53a8426b50f9
+    uuid: dae32768-233d-40e3-af69-28122538aaaf
     network: tcp
     tls: true
     udp: true
@@ -51,11 +37,11 @@ proxies:
     reality-opts:
       public-key: vDnN21WhRhPeeucJXUlufFpOpijxiPdV0Oc8pqtmzDY
       short-id: 1de7c31a2cc509a9
-  - name: "NetPulse-fond-lizard"
+  - name: "NetPulse-minty-crane"
     type: vless
-    server: 3.37.133.87
+    server: 2605:52c0:3:167:be24:11ff:fe92:200d
     port: 443
-    uuid: c9306e29-6099-4963-87ac-ff3d950bdc17
+    uuid: fed57f13-a935-41e2-b7d9-8b8218d1d96b
     network: tcp
     tls: true
     udp: true
@@ -63,13 +49,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: 1jmokHc9OQlM1t5EgTtSTaPO8dVrzNf3pnWXnp57cXM
-      short-id: f6b77cda0af7de3b
-  - name: "NetPulse-shiny-crane"
+      public-key: zAmNNSrIhWy2NVrKuww1S5FS9z72XEaoMlJeh8jjfyc
+      short-id: 7e4540b9486b953b
+  - name: "NetPulse-lively-osprey"
     type: vless
-    server: 2.28.70.17
+    server: 54.117.14.211
     port: 443
-    uuid: 5d6ec6ba-fbf5-4ded-9116-c706c326d6aa
+    uuid: 4bc25df2-bd5c-4a33-ba54-2de1a5b541cd
     network: tcp
     tls: true
     udp: true
@@ -77,18 +63,32 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: 4ytFNY3dBdHnLNSH3IhZ_SJgAS1-jf4UMPwE1jGH2D0
-      short-id: 6a8e43c2f30a39fa
+      public-key: _h6PG_iHyfjm6acMNa3fQy-4jamn_4hnTBhLR715RW8
+      short-id: 93ec0efc59d06489
+  - name: "NetPulse-nimble-comet"
+    type: vless
+    server: 2.28.194.230
+    port: 443
+    uuid: c2ef9549-236c-4482-a837-fe12ae42ef2f
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: LK_5ol3189d1OTXVbQLZ4XE0kT5PwY9X8YknBMCx60k
+      short-id: eb807238c2e3102b
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-nimble-comet"
-      - "NetPulse-lively-osprey"
+      - "NetPulse-cosmic-pelican"
       - "NetPulse-crystal-chipmunk"
-      - "NetPulse-fond-lizard"
-      - "NetPulse-shiny-crane"
+      - "NetPulse-minty-crane"
+      - "NetPulse-lively-osprey"
+      - "NetPulse-nimble-comet"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-nimble-comet"
-      - "NetPulse-lively-osprey"
+      - "NetPulse-cosmic-pelican"
       - "NetPulse-crystal-chipmunk"
-      - "NetPulse-fond-lizard"
-      - "NetPulse-shiny-crane"
+      - "NetPulse-minty-crane"
+      - "NetPulse-lively-osprey"
+      - "NetPulse-nimble-comet"
       - "🚀 自动选择"
   - name: PROXY
     type: select
