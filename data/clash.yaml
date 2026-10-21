@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-10-20 20:56:06 UTC
+# 生成时间: 2026-10-21 02:08:29 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-cosmic-pelican"
+  - name: "NetPulse-suave-mantis"
     type: vless
-    server: 3.25.216.38
+    server: 179.255.146.196
     port: 443
-    uuid: 1aa21d30-df13-4941-b85f-257779d0a2c3
+    uuid: 61634ef3-7ba1-4ff4-b1e9-5d5e8e6077de
     network: tcp
     tls: true
     udp: true
@@ -21,27 +21,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: 493Uab3KLeQRjd7iTXRYva-mAABOel_BY7FQ8GP9plg
-      short-id: 8f5e5552a0b3244d
-  - name: "NetPulse-crystal-chipmunk"
+      public-key: ZBV4aZvGggzNUuj-4YuWJcBZeAkCzHLfZZxpzj83LDo
+      short-id: 9f2b8fd46f25db9f
+  - name: "NetPulse-hardy-lantern"
     type: vless
-    server: 216.183.223.202
-    port: 4443
-    uuid: dae32768-233d-40e3-af69-28122538aaaf
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: vDnN21WhRhPeeucJXUlufFpOpijxiPdV0Oc8pqtmzDY
-      short-id: 1de7c31a2cc509a9
-  - name: "NetPulse-minty-crane"
-    type: vless
-    server: 2605:52c0:3:167:be24:11ff:fe92:200d
+    server: 54.64.138.128
     port: 443
-    uuid: fed57f13-a935-41e2-b7d9-8b8218d1d96b
+    uuid: 1b16d69b-e83f-448c-8f5c-d0075dd8f51b
     network: tcp
     tls: true
     udp: true
@@ -49,13 +35,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: zAmNNSrIhWy2NVrKuww1S5FS9z72XEaoMlJeh8jjfyc
-      short-id: 7e4540b9486b953b
+      public-key: zehJbfEw3jqmXZqBIWaFx76MBgL3BWR8LMTIYXPC5SM
+      short-id: 290146424483103a
   - name: "NetPulse-lively-osprey"
     type: vless
     server: 54.117.14.211
     port: 443
-    uuid: 4bc25df2-bd5c-4a33-ba54-2de1a5b541cd
+    uuid: 13a18347-f1d9-4b01-b8e4-e561ecf53c05
     network: tcp
     tls: true
     udp: true
@@ -65,11 +51,11 @@ proxies:
     reality-opts:
       public-key: _h6PG_iHyfjm6acMNa3fQy-4jamn_4hnTBhLR715RW8
       short-id: 93ec0efc59d06489
-  - name: "NetPulse-nimble-comet"
+  - name: "NetPulse-shiny-crane"
     type: vless
-    server: 2.28.194.230
+    server: 2.28.70.17
     port: 443
-    uuid: c2ef9549-236c-4482-a837-fe12ae42ef2f
+    uuid: 21fcfc24-59a6-4679-85f7-ed4bdd36c90a
     network: tcp
     tls: true
     udp: true
@@ -77,18 +63,32 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: LK_5ol3189d1OTXVbQLZ4XE0kT5PwY9X8YknBMCx60k
-      short-id: eb807238c2e3102b
+      public-key: 4ytFNY3dBdHnLNSH3IhZ_SJgAS1-jf4UMPwE1jGH2D0
+      short-id: 6a8e43c2f30a39fa
+  - name: "NetPulse-minty-crane"
+    type: vless
+    server: 2605:52c0:3:167:be24:11ff:fe92:200d
+    port: 443
+    uuid: a50711a8-f358-4e03-a71a-ed16ec2f8884
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: zAmNNSrIhWy2NVrKuww1S5FS9z72XEaoMlJeh8jjfyc
+      short-id: 7e4540b9486b953b
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-cosmic-pelican"
-      - "NetPulse-crystal-chipmunk"
-      - "NetPulse-minty-crane"
+      - "NetPulse-suave-mantis"
+      - "NetPulse-hardy-lantern"
       - "NetPulse-lively-osprey"
-      - "NetPulse-nimble-comet"
+      - "NetPulse-shiny-crane"
+      - "NetPulse-minty-crane"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-cosmic-pelican"
-      - "NetPulse-crystal-chipmunk"
-      - "NetPulse-minty-crane"
+      - "NetPulse-suave-mantis"
+      - "NetPulse-hardy-lantern"
       - "NetPulse-lively-osprey"
-      - "NetPulse-nimble-comet"
+      - "NetPulse-shiny-crane"
+      - "NetPulse-minty-crane"
       - "🚀 自动选择"
   - name: PROXY
     type: select
