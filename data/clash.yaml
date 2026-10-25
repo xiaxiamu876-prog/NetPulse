@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-10-25 01:52:30 UTC
+# 生成时间: 2026-10-25 10:13:41 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-nimble-comet"
+  - name: "NetPulse-shiny-crane"
     type: vless
-    server: 2.28.194.230
+    server: 2.28.70.17
     port: 443
-    uuid: f1fba80a-2f1b-41bb-a57c-63f9a32805bf
+    uuid: 6668982c-a210-4268-aea4-19d4be4e70c2
     network: tcp
     tls: true
     udp: true
@@ -21,13 +21,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: LK_5ol3189d1OTXVbQLZ4XE0kT5PwY9X8YknBMCx60k
-      short-id: eb807238c2e3102b
-  - name: "NetPulse-cosmic-pelican"
+      public-key: 4ytFNY3dBdHnLNSH3IhZ_SJgAS1-jf4UMPwE1jGH2D0
+      short-id: 6a8e43c2f30a39fa
+  - name: "NetPulse-suave-mantis"
     type: vless
-    server: 3.25.216.38
+    server: 179.255.146.196
     port: 443
-    uuid: 9a6e6847-1a7d-493e-ae85-6fcdd3478cf9
+    uuid: 8c73edb8-d228-4a16-8924-eab41dad5160
     network: tcp
     tls: true
     udp: true
@@ -35,13 +35,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: 493Uab3KLeQRjd7iTXRYva-mAABOel_BY7FQ8GP9plg
-      short-id: 8f5e5552a0b3244d
-  - name: "NetPulse-happy-meerkat"
+      public-key: ZBV4aZvGggzNUuj-4YuWJcBZeAkCzHLfZZxpzj83LDo
+      short-id: 9f2b8fd46f25db9f
+  - name: "NetPulse-getdiggingbomby"
     type: vless
-    server: 13.196.120.83
+    server: 110.77.154.112
     port: 443
-    uuid: b6f79c34-918e-49dc-9dc1-9c72aa61ad0f
+    uuid: 9af2e1ac-d762-41b0-af73-67e6a749121c
     network: tcp
     tls: true
     udp: true
@@ -49,13 +49,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: bCLF5pRI-gQZ0T2Vawr1txgwC9sBd-P6tKnqEsWeqiE
-      short-id: 7b0345d31df516ac
-  - name: "NetPulse-vivid-clover"
+      public-key: aUfTfg_tgWcKtaBz5rX8m1Lo1r1BacxFaEjT2ZxM9V8
+      short-id: d0e5a105863f309a
+  - name: "NetPulse-silly-oriole"
     type: vless
-    server: 2406:da12:b80:f00:7aa2:7cca:ad4:49a0
+    server: 2.29.113.205
     port: 443
-    uuid: 7952964e-0187-4457-987d-0c2e2f1555d6
+    uuid: deaed4a0-a09a-4b87-aef1-36948883c243
     network: tcp
     tls: true
     udp: true
@@ -63,13 +63,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: zL2en_2BZEgeccSdLQlsDwmgSKRUWq5PhXCARGlSGDg
-      short-id: 2f1f2ead7e22001a
-  - name: "NetPulse-lively-osprey"
+      public-key: LLzGjeM_r-ms7oHSEvOm-miwHNfYd7anE1x2dP2hMgA
+      short-id: 62f6baebbc4a873c
+  - name: "NetPulse-fond-lizard"
     type: vless
-    server: 54.117.14.211
+    server: 3.37.133.87
     port: 443
-    uuid: 641e8b3e-15fc-4b7a-9839-dc6f9c5bd719
+    uuid: 4edebbea-9480-4fb4-a052-c6a01fd460a4
     network: tcp
     tls: true
     udp: true
@@ -77,18 +77,18 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: _h6PG_iHyfjm6acMNa3fQy-4jamn_4hnTBhLR715RW8
-      short-id: 93ec0efc59d06489
+      public-key: 1jmokHc9OQlM1t5EgTtSTaPO8dVrzNf3pnWXnp57cXM
+      short-id: f6b77cda0af7de3b
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-nimble-comet"
-      - "NetPulse-cosmic-pelican"
-      - "NetPulse-happy-meerkat"
-      - "NetPulse-vivid-clover"
-      - "NetPulse-lively-osprey"
+      - "NetPulse-shiny-crane"
+      - "NetPulse-suave-mantis"
+      - "NetPulse-getdiggingbomby"
+      - "NetPulse-silly-oriole"
+      - "NetPulse-fond-lizard"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-nimble-comet"
-      - "NetPulse-cosmic-pelican"
-      - "NetPulse-happy-meerkat"
-      - "NetPulse-vivid-clover"
-      - "NetPulse-lively-osprey"
+      - "NetPulse-shiny-crane"
+      - "NetPulse-suave-mantis"
+      - "NetPulse-getdiggingbomby"
+      - "NetPulse-silly-oriole"
+      - "NetPulse-fond-lizard"
       - "🚀 自动选择"
   - name: PROXY
     type: select
