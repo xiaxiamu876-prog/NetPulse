@@ -1,15 +1,16 @@
 {
  "total": 5,
  "by_class": {
-  "foundation": 5
+  "volunteer": 3,
+  "foundation": 2
  },
  "by_country": {
-  "US": 1,
+  "BG": 1,
   "DE": 2,
-  "KR": 1,
-  "JP": 1
+  "AU": 1,
+  "US": 1
  },
  "protocol": "VLESS + REALITY + Vision",
- "updated_at": "2026-10-26T01:54:25Z",
+ "updated_at": "2026-10-26T11:37:22Z",
  "source": "OpenRung Volunteer Relay Network"
 }
