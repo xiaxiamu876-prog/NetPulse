@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-10-27 02:32:42 UTC
+# 生成时间: 2026-10-27 11:07:28 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,25 @@ log-level: info
 ipv6: false
 
 proxies:
+  - name: "NetPulse-gleeful-thistle"
+    type: vless
+    server: 188.245.27.90
+    port: 443
+    uuid: 8132805f-cae9-40eb-b5ae-91d2d29813d5
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: N0d73WWizhpLdRyFlPCdxtXT9Eq7krkaLX4YXG8deFs
+      short-id: 22267dfa5d4f30d8
   - name: "NetPulse-nimble-comet"
     type: vless
     server: 2.28.194.230
     port: 443
-    uuid: 482e48ec-87b7-4204-92a1-1d85d9d5bab3
+    uuid: 914759c6-e7af-4c4b-be7d-b7243a14e7b2
     network: tcp
     tls: true
     udp: true
@@ -23,11 +37,11 @@ proxies:
     reality-opts:
       public-key: LK_5ol3189d1OTXVbQLZ4XE0kT5PwY9X8YknBMCx60k
       short-id: eb807238c2e3102b
-  - name: "NetPulse-fond-lizard"
+  - name: "NetPulse-cuddly-eagle"
     type: vless
-    server: 3.37.133.87
+    server: 88.198.149.218
     port: 443
-    uuid: bf79f164-3566-454a-8a00-30452aa411a6
+    uuid: 29002b25-60f4-4488-9e5d-8ce8b40481ae
     network: tcp
     tls: true
     udp: true
@@ -35,13 +49,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: 1jmokHc9OQlM1t5EgTtSTaPO8dVrzNf3pnWXnp57cXM
-      short-id: f6b77cda0af7de3b
-  - name: "NetPulse-modest-summit"
+      public-key: wVF2SRbJLlE_V169I8QkHlxWmLMsfppP3IrD3epgCTY
+      short-id: f552a4ce0afc96db
+  - name: "NetPulse-mystic-kingfisher"
     type: vless
-    server: 143.246.43.153
+    server: 2a13:b487:4f01:ae86::c5
     port: 443
-    uuid: 669098a0-e8d0-4537-bcc4-9a6de0835dcc
+    uuid: b30b888a-8138-4751-842b-f2728ab8f86e
     network: tcp
     tls: true
     udp: true
@@ -49,13 +63,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: 7JN7m1iLqrMjeocGvqw6Y7l6jP8MhFzNn5OyJQyWmwI
-      short-id: dc3ca94169e3b3f6
-  - name: "NetPulse-lively-osprey"
+      public-key: jeSTi0fWEQYjFq8mlINbsoToMxpaIDS6_PNF8pdqjiI
+      short-id: b463c276a9d74de3
+  - name: "NetPulse-glorious-pelican"
     type: vless
-    server: 54.117.14.211
+    server: 8.217.145.133
     port: 443
-    uuid: 9593f24d-dd67-410c-9aa3-fb36be1d4e2a
+    uuid: 2036fd75-2ab5-4c79-90b5-4526f9dbb137
     network: tcp
     tls: true
     udp: true
@@ -63,32 +77,18 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: _h6PG_iHyfjm6acMNa3fQy-4jamn_4hnTBhLR715RW8
-      short-id: 93ec0efc59d06489
-  - name: "NetPulse-suave-mantis"
-    type: vless
-    server: 179.255.146.196
-    port: 443
-    uuid: 9c3e9ac0-7d89-41e1-94db-c4bcb6995e23
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: MLZseN2LyEq2ou3sXX1xw7wgpOxUPRryEimlxyxVbGc
-      short-id: 81faa4496c67311f
+      public-key: 0eEdkCAyo7GQ7qut1pyxghdzv_mRXyCaNczCnYXeiXM
+      short-id: 119acbb793932c95
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
+      - "NetPulse-gleeful-thistle"
       - "NetPulse-nimble-comet"
-      - "NetPulse-fond-lizard"
-      - "NetPulse-modest-summit"
-      - "NetPulse-lively-osprey"
-      - "NetPulse-suave-mantis"
+      - "NetPulse-cuddly-eagle"
+      - "NetPulse-mystic-kingfisher"
+      - "NetPulse-glorious-pelican"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
+      - "NetPulse-gleeful-thistle"
       - "NetPulse-nimble-comet"
-      - "NetPulse-fond-lizard"
-      - "NetPulse-modest-summit"
-      - "NetPulse-lively-osprey"
-      - "NetPulse-suave-mantis"
+      - "NetPulse-cuddly-eagle"
+      - "NetPulse-mystic-kingfisher"
+      - "NetPulse-glorious-pelican"
       - "🚀 自动选择"
   - name: PROXY
     type: select
