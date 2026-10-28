@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-10-28 17:28:20 UTC
+# 生成时间: 2026-10-28 21:55:51 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,25 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-gleeful-thistle"
-    type: vless
-    server: 188.245.27.90
-    port: 443
-    uuid: 623b3f4e-f9c9-405e-8156-b935d0e2df0d
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: N0d73WWizhpLdRyFlPCdxtXT9Eq7krkaLX4YXG8deFs
-      short-id: 22267dfa5d4f30d8
   - name: "NetPulse-shiny-crane"
     type: vless
     server: 2.28.70.17
     port: 443
-    uuid: 416e8194-c2c7-424d-b5e8-8642357a03b5
+    uuid: 589fce54-7376-4aeb-ba3f-2a988b0da394
     network: tcp
     tls: true
     udp: true
@@ -37,11 +23,11 @@ proxies:
     reality-opts:
       public-key: 4ytFNY3dBdHnLNSH3IhZ_SJgAS1-jf4UMPwE1jGH2D0
       short-id: 6a8e43c2f30a39fa
-  - name: "NetPulse-modest-summit"
+  - name: "NetPulse-my-relay"
     type: vless
-    server: 143.246.43.153
+    server: 130.162.155.110
     port: 443
-    uuid: 60e0e732-a45e-4969-97d6-8fd33d260370
+    uuid: aa180fe9-43b8-4e66-bd08-c5185c0a81d2
     network: tcp
     tls: true
     udp: true
@@ -49,13 +35,41 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: 7JN7m1iLqrMjeocGvqw6Y7l6jP8MhFzNn5OyJQyWmwI
-      short-id: dc3ca94169e3b3f6
+      public-key: bix4Deo2o5gtfzeLjfjRF36HEmdzfkQpH2dlMszbUQA
+      short-id: 510a4500cbea1f17
+  - name: "NetPulse-silly-oriole"
+    type: vless
+    server: 2.29.113.205
+    port: 443
+    uuid: 47439651-0af3-4d96-985c-61bf4400c446
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: LLzGjeM_r-ms7oHSEvOm-miwHNfYd7anE1x2dP2hMgA
+      short-id: 62f6baebbc4a873c
+  - name: "NetPulse-noble-stingray"
+    type: vless
+    server: 23.88.47.215
+    port: 443
+    uuid: 22012961-cadd-4b31-b733-462a063cefca
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: q3YPmQ8WlBZ8ahfHWYiztS9F_4nuLs1Z5y9CsWhhhlM
+      short-id: 6379c8354a8c9d02
   - name: "NetPulse-fond-lizard"
     type: vless
     server: 3.37.133.87
     port: 443
-    uuid: f76007d0-3443-4288-8cc0-002899da9bef
+    uuid: 6a606106-448c-4410-aaca-9ffdcdfecae0
     network: tcp
     tls: true
     udp: true
@@ -65,30 +79,16 @@ proxies:
     reality-opts:
       public-key: 1jmokHc9OQlM1t5EgTtSTaPO8dVrzNf3pnWXnp57cXM
       short-id: f6b77cda0af7de3b
-  - name: "NetPulse-vivid-clover"
-    type: vless
-    server: 2406:da12:b80:f00:7aa2:7cca:ad4:49a0
-    port: 443
-    uuid: 9fd9f5d0-3753-4005-ab71-0f5f72e7f21e
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: zL2en_2BZEgeccSdLQlsDwmgSKRUWq5PhXCARGlSGDg
-      short-id: 2f1f2ead7e22001a
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-gleeful-thistle"
       - "NetPulse-shiny-crane"
-      - "NetPulse-modest-summit"
+      - "NetPulse-my-relay"
+      - "NetPulse-silly-oriole"
+      - "NetPulse-noble-stingray"
       - "NetPulse-fond-lizard"
-      - "NetPulse-vivid-clover"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-gleeful-thistle"
       - "NetPulse-shiny-crane"
-      - "NetPulse-modest-summit"
+      - "NetPulse-my-relay"
+      - "NetPulse-silly-oriole"
+      - "NetPulse-noble-stingray"
       - "NetPulse-fond-lizard"
-      - "NetPulse-vivid-clover"
       - "🚀 自动选择"
   - name: PROXY
     type: select

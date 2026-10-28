@@ -6,10 +6,10 @@
  },
  "by_country": {
   "DE": 2,
-  "BG": 1,
-  "KR": 2
+  "KR": 2,
+  "FI": 1
  },
  "protocol": "VLESS + REALITY + Vision",
- "updated_at": "2026-10-28T17:28:20Z",
+ "updated_at": "2026-10-28T21:55:51Z",
  "source": "OpenRung Volunteer Relay Network"
 }
