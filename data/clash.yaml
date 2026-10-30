@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-10-30 11:43:47 UTC
+# 生成时间: 2026-10-30 17:17:10 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-happy-meerkat"
+  - name: "NetPulse-modest-summit"
     type: vless
-    server: 13.196.120.83
+    server: 143.246.43.153
     port: 443
-    uuid: f09f85ca-64a0-472f-91d4-b65331aefd71
+    uuid: c10c29a6-e604-4100-a3cb-87025e845b29
     network: tcp
     tls: true
     udp: true
@@ -21,41 +21,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: bCLF5pRI-gQZ0T2Vawr1txgwC9sBd-P6tKnqEsWeqiE
-      short-id: 7b0345d31df516ac
-  - name: "NetPulse-silly-oriole"
-    type: vless
-    server: 2.29.113.205
-    port: 443
-    uuid: 53e9a9b0-410d-43a2-9720-52984e88e3db
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: kfh33oY0vgAiCnnaIeZE9Vd0i17AIGIvqq8l9uYYZUs
-      short-id: 80be5e4b11cb4daf
-  - name: "NetPulse-noble-stingray"
-    type: vless
-    server: 23.88.47.215
-    port: 443
-    uuid: c8a26572-bc13-40f5-a8aa-54b7292bcd26
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: I0Y6iTUdtkPK30ukKMnHO05f2ZbZdamPJoQOvC0FuUA
-      short-id: 454460a39dfe5d63
+      public-key: EmNGfXJ3dg0epgo8CSppRpScjJZgzLTAA4thzRmJPVw
+      short-id: f370d3329f177736
   - name: "NetPulse-balmy-dingo"
     type: vless
     server: 62.83.76.104
     port: 443
-    uuid: df08018a-5f58-4d90-a8b7-093acc84924b
+    uuid: 91a34be2-27ec-492d-8c27-5e72411d6cce
     network: tcp
     tls: true
     udp: true
@@ -65,11 +37,11 @@ proxies:
     reality-opts:
       public-key: QWl8eML1Ph1TKG_myUD3FNtQV68h8snF-ec1LR4DVAo
       short-id: 6867de437a1aada4
-  - name: "NetPulse-vivid-clover"
+  - name: "NetPulse-noble-stingray"
     type: vless
-    server: 2406:da12:b80:f00:7aa2:7cca:ad4:49a0
+    server: 23.88.47.215
     port: 443
-    uuid: 71c81b1e-7c52-44d3-97d6-e0bce6ccf3d5
+    uuid: a1b2f0ec-3bd7-43e0-868d-8e7500ef2108
     network: tcp
     tls: true
     udp: true
@@ -77,18 +49,46 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: zL2en_2BZEgeccSdLQlsDwmgSKRUWq5PhXCARGlSGDg
-      short-id: 2f1f2ead7e22001a
+      public-key: I0Y6iTUdtkPK30ukKMnHO05f2ZbZdamPJoQOvC0FuUA
+      short-id: 454460a39dfe5d63
+  - name: "NetPulse-gleeful-thistle"
+    type: vless
+    server: 188.245.27.90
+    port: 443
+    uuid: 1d3951e8-97a0-4414-a3ea-cc0fdcc3588c
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: PTt4_gUBvmzvxlU7EF00zDBP87exWxg52AmFNLJ4ymM
+      short-id: 388e591a95a7bf5c
+  - name: "NetPulse-nimble-comet"
+    type: vless
+    server: 2.28.194.230
+    port: 443
+    uuid: 1ef5dfc0-ec7a-4cee-a7de-8ad2d90c70c8
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: LK_5ol3189d1OTXVbQLZ4XE0kT5PwY9X8YknBMCx60k
+      short-id: eb807238c2e3102b
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-happy-meerkat"
-      - "NetPulse-silly-oriole"
-      - "NetPulse-noble-stingray"
+      - "NetPulse-modest-summit"
       - "NetPulse-balmy-dingo"
-      - "NetPulse-vivid-clover"
+      - "NetPulse-noble-stingray"
+      - "NetPulse-gleeful-thistle"
+      - "NetPulse-nimble-comet"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-happy-meerkat"
-      - "NetPulse-silly-oriole"
-      - "NetPulse-noble-stingray"
+      - "NetPulse-modest-summit"
       - "NetPulse-balmy-dingo"
-      - "NetPulse-vivid-clover"
+      - "NetPulse-noble-stingray"
+      - "NetPulse-gleeful-thistle"
+      - "NetPulse-nimble-comet"
       - "🚀 自动选择"
   - name: PROXY
     type: select
