@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-11-01 21:23:55 UTC
+# 生成时间: 2026-11-02 02:53:09 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-balmy-dingo"
+  - name: "NetPulse-cuddly-eagle"
     type: vless
-    server: 62.83.76.104
+    server: 88.198.149.218
     port: 443
-    uuid: 30e0ad1a-40d9-449e-84a5-12e514bf1bc9
+    uuid: be38cbc7-03c9-4db2-aea6-ccea5c2ff4ea
     network: tcp
     tls: true
     udp: true
@@ -21,13 +21,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: QWl8eML1Ph1TKG_myUD3FNtQV68h8snF-ec1LR4DVAo
-      short-id: 6867de437a1aada4
-  - name: "NetPulse-happy-meerkat"
+      public-key: OJIM4cof8PJgi-aCvplAul3FQnmCELhvcEsCo6S3fm8
+      short-id: fe0a23d7b6682b70
+  - name: "NetPulse-cosmic-pelican"
     type: vless
-    server: 13.196.120.83
+    server: 3.25.216.38
     port: 443
-    uuid: b9fa8fd2-9f2a-4120-b8ed-8c49218dc6d1
+    uuid: 681f2e56-cadf-4282-a42b-807b96d0faef
     network: tcp
     tls: true
     udp: true
@@ -35,13 +35,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: bCLF5pRI-gQZ0T2Vawr1txgwC9sBd-P6tKnqEsWeqiE
-      short-id: 7b0345d31df516ac
-  - name: "NetPulse-gleeful-thistle"
+      public-key: 493Uab3KLeQRjd7iTXRYva-mAABOel_BY7FQ8GP9plg
+      short-id: 8f5e5552a0b3244d
+  - name: "NetPulse-lively-osprey"
     type: vless
-    server: 188.245.27.90
+    server: 54.117.14.211
     port: 443
-    uuid: 5c7baf41-d164-4805-b051-3188bcd2bdf5
+    uuid: 4ee932a0-dee1-4f20-92e2-92761b64a0ff
     network: tcp
     tls: true
     udp: true
@@ -49,13 +49,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: PTt4_gUBvmzvxlU7EF00zDBP87exWxg52AmFNLJ4ymM
-      short-id: 388e591a95a7bf5c
+      public-key: _h6PG_iHyfjm6acMNa3fQy-4jamn_4hnTBhLR715RW8
+      short-id: 93ec0efc59d06489
   - name: "NetPulse-modest-summit"
     type: vless
     server: 143.246.43.153
     port: 443
-    uuid: 9057818e-c218-43ff-85f0-fba26f07b3a9
+    uuid: 9bf172b0-53ed-40a4-9feb-ebf75f4f0762
     network: tcp
     tls: true
     udp: true
@@ -69,7 +69,7 @@ proxies:
     type: vless
     server: 2.28.194.230
     port: 443
-    uuid: 71227355-47d0-4d12-9687-36ca0f328069
+    uuid: 4bf0615a-790e-4ee8-a1ed-7fd0bca0201f
     network: tcp
     tls: true
     udp: true
@@ -84,9 +84,9 @@ proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-balmy-dingo"
-      - "NetPulse-happy-meerkat"
-      - "NetPulse-gleeful-thistle"
+      - "NetPulse-cuddly-eagle"
+      - "NetPulse-cosmic-pelican"
+      - "NetPulse-lively-osprey"
       - "NetPulse-modest-summit"
       - "NetPulse-nimble-comet"
     url: http://www.gstatic.com/generate_204
@@ -96,9 +96,9 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-balmy-dingo"
-      - "NetPulse-happy-meerkat"
-      - "NetPulse-gleeful-thistle"
+      - "NetPulse-cuddly-eagle"
+      - "NetPulse-cosmic-pelican"
+      - "NetPulse-lively-osprey"
       - "NetPulse-modest-summit"
       - "NetPulse-nimble-comet"
       - "🚀 自动选择"
