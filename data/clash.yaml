@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-11-03 22:36:55 UTC
+# 生成时间: 2026-11-04 03:28:45 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,25 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-noble-stingray"
-    type: vless
-    server: 23.88.47.215
-    port: 443
-    uuid: 6a0c1767-012d-4f39-916e-58e57ba24e16
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: I0Y6iTUdtkPK30ukKMnHO05f2ZbZdamPJoQOvC0FuUA
-      short-id: 454460a39dfe5d63
   - name: "NetPulse-silly-oriole"
     type: vless
     server: 2.29.113.205
     port: 443
-    uuid: e57bb435-d666-4bb0-8d61-dbfb7dc38f21
+    uuid: 475401c6-c07b-4a17-99ca-f41eb84692bc
     network: tcp
     tls: true
     udp: true
@@ -37,11 +23,53 @@ proxies:
     reality-opts:
       public-key: kfh33oY0vgAiCnnaIeZE9Vd0i17AIGIvqq8l9uYYZUs
       short-id: 80be5e4b11cb4daf
+  - name: "NetPulse-gleeful-thistle"
+    type: vless
+    server: 188.245.27.90
+    port: 443
+    uuid: 982aaabc-36fc-42fd-bdec-49bec4ae34b1
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: PTt4_gUBvmzvxlU7EF00zDBP87exWxg52AmFNLJ4ymM
+      short-id: 388e591a95a7bf5c
+  - name: "NetPulse-noble-stingray"
+    type: vless
+    server: 23.88.47.215
+    port: 443
+    uuid: a0d79f26-b847-45bb-9651-53bc513d8c6f
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: I0Y6iTUdtkPK30ukKMnHO05f2ZbZdamPJoQOvC0FuUA
+      short-id: 454460a39dfe5d63
+  - name: "NetPulse-fond-lizard"
+    type: vless
+    server: 3.37.133.87
+    port: 443
+    uuid: e2ca3497-7bf8-42fe-ba8a-d8d23993660a
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: rdpmMHKEklV8tCLYdOF-yGs5wSee0hoCsyKt4bGbsAk
+      short-id: ea86a55ebdc3ade5
   - name: "NetPulse-modest-summit"
     type: vless
     server: 143.246.43.153
     port: 443
-    uuid: a2b7016a-b61e-4019-bdae-51d40ef5fe5e
+    uuid: 693a0887-e63a-4a80-975e-a67b00171a02
     network: tcp
     tls: true
     udp: true
@@ -51,44 +79,16 @@ proxies:
     reality-opts:
       public-key: LSMlI5kxYWEmgw-6T9u2wOzTLYORgQUSjIeVvfUHBRU
       short-id: 44fc6601a52588f6
-  - name: "NetPulse-happy-meerkat"
-    type: vless
-    server: 13.196.120.83
-    port: 443
-    uuid: d8331c44-8209-44d5-b53e-714f550a8cd0
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: bCLF5pRI-gQZ0T2Vawr1txgwC9sBd-P6tKnqEsWeqiE
-      short-id: 7b0345d31df516ac
-  - name: "NetPulse-nimble-comet"
-    type: vless
-    server: 2.28.194.230
-    port: 443
-    uuid: 966fe0fd-fb86-4ee2-a7b1-fcbb55dacb39
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: LK_5ol3189d1OTXVbQLZ4XE0kT5PwY9X8YknBMCx60k
-      short-id: eb807238c2e3102b
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-noble-stingray"
       - "NetPulse-silly-oriole"
+      - "NetPulse-gleeful-thistle"
+      - "NetPulse-noble-stingray"
+      - "NetPulse-fond-lizard"
       - "NetPulse-modest-summit"
-      - "NetPulse-happy-meerkat"
-      - "NetPulse-nimble-comet"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-noble-stingray"
       - "NetPulse-silly-oriole"
+      - "NetPulse-gleeful-thistle"
+      - "NetPulse-noble-stingray"
+      - "NetPulse-fond-lizard"
       - "NetPulse-modest-summit"
-      - "NetPulse-happy-meerkat"
-      - "NetPulse-nimble-comet"
       - "🚀 自动选择"
   - name: PROXY
     type: select
