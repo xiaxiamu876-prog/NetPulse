@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-11-12 04:29:07 UTC
+# 生成时间: 2026-11-12 14:02:28 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,53 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-arctic-swan"
-    type: vless
-    server: 62.83.81.80
-    port: 443
-    uuid: ff743e37-15f2-4074-9557-3d369acfbe73
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: XfqRi7QItpOMnRmON1x15rFcn-0hwTSnMZt6yebm7Dg
-      short-id: 4d61f03b22765ea7
-  - name: "NetPulse-misty-hedgehog"
-    type: vless
-    server: 62.83.95.178
-    port: 443
-    uuid: eb84df6d-a48f-4083-909b-75327e7810c1
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: YD2nm1z3qE7G9pReN7sqUcqwiz9LBUWGagDXc0RqAUI
-      short-id: 7e25c8ab6ed25235
-  - name: "NetPulse-gleeful-thistle"
-    type: vless
-    server: 188.245.27.90
-    port: 443
-    uuid: 01d3a78c-d28a-48e5-8100-62aeb7673278
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: PTt4_gUBvmzvxlU7EF00zDBP87exWxg52AmFNLJ4ymM
-      short-id: 388e591a95a7bf5c
   - name: "NetPulse-cosmic-pelican"
     type: vless
     server: 3.25.216.38
     port: 443
-    uuid: a26fd7c9-c2a2-472d-a2aa-c26e051fabcd
+    uuid: 418813f8-b77f-4fbb-97ed-6dd61b92a354
     network: tcp
     tls: true
     udp: true
@@ -65,11 +23,25 @@ proxies:
     reality-opts:
       public-key: 493Uab3KLeQRjd7iTXRYva-mAABOel_BY7FQ8GP9plg
       short-id: 8f5e5552a0b3244d
+  - name: "NetPulse-misty-hedgehog"
+    type: vless
+    server: 62.83.95.178
+    port: 443
+    uuid: 7fbc7bb2-bc0f-4596-a96b-6a9aa562dec3
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: YD2nm1z3qE7G9pReN7sqUcqwiz9LBUWGagDXc0RqAUI
+      short-id: 7e25c8ab6ed25235
   - name: "NetPulse-nimble-comet"
     type: vless
     server: 2.28.194.230
     port: 443
-    uuid: 98519aa1-2ae6-43d8-9b6f-29000335abe5
+    uuid: 23f577f2-37e3-4855-8b5c-8dff7e2607cd
     network: tcp
     tls: true
     udp: true
@@ -79,16 +51,44 @@ proxies:
     reality-opts:
       public-key: LK_5ol3189d1OTXVbQLZ4XE0kT5PwY9X8YknBMCx60k
       short-id: eb807238c2e3102b
+  - name: "NetPulse-modest-summit"
+    type: vless
+    server: 143.246.43.153
+    port: 443
+    uuid: 3cd31191-00ba-485b-bdc9-8f3952d25d10
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: LSMlI5kxYWEmgw-6T9u2wOzTLYORgQUSjIeVvfUHBRU
+      short-id: 44fc6601a52588f6
+  - name: "NetPulse-balmy-dingo"
+    type: vless
+    server: 62.83.76.104
+    port: 443
+    uuid: cdae641a-c89c-419f-88c2-f34a2c5d06a6
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: QWl8eML1Ph1TKG_myUD3FNtQV68h8snF-ec1LR4DVAo
+      short-id: 6867de437a1aada4
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-arctic-swan"
-      - "NetPulse-misty-hedgehog"
-      - "NetPulse-gleeful-thistle"
       - "NetPulse-cosmic-pelican"
+      - "NetPulse-misty-hedgehog"
       - "NetPulse-nimble-comet"
+      - "NetPulse-modest-summit"
+      - "NetPulse-balmy-dingo"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -96,11 +96,11 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-arctic-swan"
-      - "NetPulse-misty-hedgehog"
-      - "NetPulse-gleeful-thistle"
       - "NetPulse-cosmic-pelican"
+      - "NetPulse-misty-hedgehog"
       - "NetPulse-nimble-comet"
+      - "NetPulse-modest-summit"
+      - "NetPulse-balmy-dingo"
       - "🚀 自动选择"
   - name: PROXY
     type: select
