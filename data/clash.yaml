@@ -1,6 +1,6 @@
 # NetPulse - 全球网络延迟监测平台
 # 警告：以下配置仅用于网络诊断与性能测试
-# 生成时间: 2026-11-13 22:56:42 UTC
+# 生成时间: 2026-11-14 03:42:32 UTC
 
 mixed-port: 7890
 allow-lan: false
@@ -9,11 +9,11 @@ log-level: info
 ipv6: false
 
 proxies:
-  - name: "NetPulse-balmy-dingo"
+  - name: "NetPulse-lucky-hawk"
     type: vless
-    server: 62.83.76.104
+    server: 62.83.88.110
     port: 443
-    uuid: 8c1d6329-b876-45ff-8aa8-1ebfd1beff31
+    uuid: c71c9a14-902c-415f-9ad4-89c4645b2ea6
     network: tcp
     tls: true
     udp: true
@@ -21,41 +21,13 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: QWl8eML1Ph1TKG_myUD3FNtQV68h8snF-ec1LR4DVAo
-      short-id: 6867de437a1aada4
-  - name: "NetPulse-shiny-crane"
-    type: vless
-    server: 2.28.70.17
-    port: 443
-    uuid: 63031c44-d78f-4871-9d1f-0214453384cf
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: 6Fmhs2bg9yrpsCLwM13ftcI5-xgycLwcrGR4ftRBqHQ
-      short-id: ceffdabf8a3aba65
-  - name: "NetPulse-arctic-swan"
-    type: vless
-    server: 62.83.81.80
-    port: 443
-    uuid: 209ca94b-02f0-4b6e-93aa-ae16763dcf77
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    reality: true
-    reality-opts:
-      public-key: XfqRi7QItpOMnRmON1x15rFcn-0hwTSnMZt6yebm7Dg
-      short-id: 4d61f03b22765ea7
+      public-key: 5ya0Bh9FgwO2v1toTZYu8JUTZ-mwa_bCTD6McVe-qy8
+      short-id: 00b28a6b22afc154
   - name: "NetPulse-silly-oriole"
     type: vless
     server: 2.29.113.205
     port: 443
-    uuid: 35ccd38a-0bd2-40b0-8bd9-d84f237195ef
+    uuid: 035c8a49-0781-4dc5-98b2-9b3f3a8957c5
     network: tcp
     tls: true
     udp: true
@@ -65,11 +37,11 @@ proxies:
     reality-opts:
       public-key: LB3fkItpKFAiM8K13YNTzjuAkIhJLK5JnMsMrGbWLGk
       short-id: bbda5cbf709da20a
-  - name: "NetPulse-nimble-comet"
+  - name: "NetPulse-cuddly-eagle"
     type: vless
-    server: 2.28.194.230
+    server: 88.198.149.218
     port: 443
-    uuid: cdea5a99-514f-4564-a655-2f896d072b4f
+    uuid: 578bc8bf-9208-406f-92c2-3561688684f8
     network: tcp
     tls: true
     udp: true
@@ -77,17 +49,45 @@ proxies:
     servername: www.cloudflare.com
     reality: true
     reality-opts:
-      public-key: LK_5ol3189d1OTXVbQLZ4XE0kT5PwY9X8YknBMCx60k
-      short-id: eb807238c2e3102b
+      public-key: a9_XDSYOFRE_pQIrbZypz34naZutzLMAmTeDqfzxjgE
+      short-id: c8369eeb3350a3c3
+  - name: "NetPulse-shiny-crane"
+    type: vless
+    server: 2.28.70.17
+    port: 443
+    uuid: afed9068-1f5b-482c-932f-3cbb57a0f60f
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: 6Fmhs2bg9yrpsCLwM13ftcI5-xgycLwcrGR4ftRBqHQ
+      short-id: ceffdabf8a3aba65
+  - name: "NetPulse-nimble-comet"
+    type: vless
+    server: 2.28.194.230
+    port: 443
+    uuid: 13e3d280-d849-4ab2-a6aa-bc688fe7657f
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    reality: true
+    reality-opts:
+      public-key: 30XEUz1vsfq_VfmYkf0AdxDtd-vheqMa9oUEy9C0RhY
+      short-id: 6ab574de799dd812
 
 proxy-groups:
   - name: "🚀 自动选择"
     type: url-test
     proxies:
-      - "NetPulse-balmy-dingo"
-      - "NetPulse-shiny-crane"
-      - "NetPulse-arctic-swan"
+      - "NetPulse-lucky-hawk"
       - "NetPulse-silly-oriole"
+      - "NetPulse-cuddly-eagle"
+      - "NetPulse-shiny-crane"
       - "NetPulse-nimble-comet"
     url: http://www.gstatic.com/generate_204
     interval: 300
@@ -96,10 +96,10 @@ proxy-groups:
   - name: "🎯 手动切换"
     type: select
     proxies:
-      - "NetPulse-balmy-dingo"
-      - "NetPulse-shiny-crane"
-      - "NetPulse-arctic-swan"
+      - "NetPulse-lucky-hawk"
       - "NetPulse-silly-oriole"
+      - "NetPulse-cuddly-eagle"
+      - "NetPulse-shiny-crane"
       - "NetPulse-nimble-comet"
       - "🚀 自动选择"
   - name: PROXY
